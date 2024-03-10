@@ -1,0 +1,23 @@
+<nav>
+  <span class="nav-logo"> Breezy </span>
+  <div>
+    <div class="nav-content">
+      <div class="nav-items" *ngIf="showMenu">
+        <span>Home</span>
+        <span>Air quality</span>
+        <span>Login</span>
+        <span>Register</span>
+      </div>
+      <div
+        class="hamburger-menu"
+        [class.visible]="showMenu"
+        (click)="toggleMenu()"
+        (keydown)="handleKeydown($event)"
+        tabindex="0">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </div>
+</nav>
