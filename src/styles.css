@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*-------------------------Variables-------------------------*/
+
+:root {
+  --nav-height: 60px;
+  --horizontal-padding: 10vw;
+  --orange-web: rgb(255, 175, 60);
+  --font: 'Poppins';
+}
