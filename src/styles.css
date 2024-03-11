@@ -7,6 +7,21 @@
   padding: 0;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.hero {
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex: 1;
+  min-height: 100svh;
+  padding: var(--nav-height) var(--horizontal-padding);
+}
+
 /*-------------------------Variables-------------------------*/
 
 :root {
