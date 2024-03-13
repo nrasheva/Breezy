@@ -87,10 +87,14 @@ nav {
     min-height: 100svh;
     padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
     position: absolute;
+    justify-content: center;
+    text-align: center;
   }
 
   .nav-items > span {
     width: 100%;
+    background-color: var(--dark-blue-magenta);
+    padding: 1rem 0;
   }
 
   .hamburger-menu {
