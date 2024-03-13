@@ -5,8 +5,20 @@
       <div class="nav-items" *ngIf="showMenu">
         <span>Home</span>
         <span>Air quality</span>
-        <span routerLink="/login">Login</span>
-        <span routerLink="/register">Register</span>
+        <span
+          routerLink="/login"
+          (click)="toggleMenu()"
+          (keydown)="handleKeydown($event)"
+          tabindex="0"
+          >Login</span
+        >
+        <span
+          routerLink="/register"
+          (click)="toggleMenu()"
+          (keydown)="handleKeydown($event)"
+          tabindex="0"
+          >Register</span
+        >
       </div>
       <div
         class="hamburger-menu"
