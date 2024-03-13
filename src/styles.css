@@ -13,15 +13,6 @@
   min-height: 100svh;
 }
 
-.hero {
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  flex: 1;
-  min-height: 100svh;
-  padding: var(--nav-height) var(--horizontal-padding);
-}
-
 /*-------------------------Variables-------------------------*/
 
 :root {
@@ -30,4 +21,10 @@
   --dark-blue-magenta: rgb(50, 50, 80);
   --light-blue-magenta: rgba(50, 50, 80, 0.8);
   --font: 'Poppins';
+}
+
+/*-------------------------Typography-------------------------*/
+
+.white {
+  color: white;
 }
