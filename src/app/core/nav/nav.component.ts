@@ -8,8 +8,12 @@ import { Component, HostListener } from '@angular/core';
 export class NavComponent {
   showMenu = window.innerWidth > 768;
 
+  constructor() {
+    this.checkScreenWidth();
+  }
+
   toggleMenu() {
-    this.showMenu = !this.showMenu;
+    if (window.innerWidth < 768) this.showMenu = !this.showMenu;
   }
 
   handleKeydown(event: KeyboardEvent) {
@@ -18,8 +22,12 @@ export class NavComponent {
     }
   }
 
-  @HostListener('window:resize')
+  @HostListener('window:resize', ['$event'])
   onResize() {
+    this.checkScreenWidth();
+  }
+
+  private checkScreenWidth() {
     this.showMenu = window.innerWidth > 768;
   }
 }
