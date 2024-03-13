@@ -1,6 +1,91 @@
+/*-------------------------Auth-------------------------*/
+
 .auth {
+  display: flex;
+  flex: 1;
+  padding-top: var(--nav-height);
+  min-height: 100svh;
+}
+
+.column {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  padding: var(--nav-height) var(--horizontal-padding);
+}
+
+.column:first-of-type {
+  display: none;
+  flex: 1.5;
+  background-color: purple;
+}
+
+.column:last-of-type {
+  background-color: yellow;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: blueviolet;
+}
+
+form input:first-of-type {
+  margin-top: 2rem;
+}
+
+.auth-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.input {
+  background: none;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  color: white;
+  font: 400 0.95rem var(--font);
+  height: 50px;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.input:focus {
+  border: 2px solid grey;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgb(110, 110, 110);
+  opacity: 1;
+}
+
+button {
+  background: none;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  height: 3rem;
+  white-space: nowrap;
+}
+
+.filled {
+  background-color: blue;
+  color: black;
+  padding: 0 2rem;
+}
+
+@media only screen and (min-width: 1200px) {
+  .column:first-of-type {
     display: flex;
-    flex: 1;
-    padding-top: var(--nav-height);
-    background-color: red;
   }
+}
+
+@media only screen and (max-width: 768px) {
+  .column:last-of-type {
+    display: flex;
+    padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
+  }
+}
