@@ -3,7 +3,10 @@
   <div>
     <div class="nav-content">
       <div class="nav-items" *ngIf="showMenu">
-        <span>Home</span>
+        <span routerLink="/home"
+        (click)="toggleMenu()"
+        (keydown)="handleKeydown($event)"
+        tabindex="0">Home</span>
         <span>Air quality</span>
         <span
           routerLink="/login"
