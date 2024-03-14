@@ -6,10 +6,18 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
+import { ErrorComponent } from './error/error.component';
+import { UserRoutingModule } from './user/user-routing-module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, CoreModule, UserModule],
+  declarations: [AppComponent, HomeComponent, ErrorComponent],
+  imports: [
+    BrowserModule,
+    CoreModule,
+    UserModule,
+    UserRoutingModule,
+    AppRoutingModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
