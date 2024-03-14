@@ -41,6 +41,10 @@ form input:first-of-type {
   margin-top: 1rem;
 }
 
+.auth-actions span:hover {
+  cursor: pointer;
+}
+
 .input {
   background: none;
   border-radius: 0.5rem;

@@ -13,6 +13,11 @@
   min-height: 100svh;
 }
 
+.main {
+  padding-top: var(--nav-height);
+  background-color: red;
+}
+
 /*-------------------------Variables-------------------------*/
 
 :root {
