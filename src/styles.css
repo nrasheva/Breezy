@@ -26,6 +26,7 @@
   --dark-blue-magenta: rgb(50, 50, 80);
   --light-blue-magenta: rgba(50, 50, 80, 0.9);
   --font: 'Poppins';
+  --border-color: rgb(220, 220, 220);
 }
 
 /*-------------------------Typography-------------------------*/
