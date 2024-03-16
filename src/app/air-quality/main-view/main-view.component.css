@@ -7,11 +7,21 @@
 
 .views {
   background-color: pink;
+  padding: 0.5rem;
+}
+
+.view {
+    border: 1px solid black;
 }
 
 @media only screen and (min-width: 1200px) {
   .views {
     display: flex;
     justify-content: space-around;
+    padding: 0.5rem 2rem;
+  }
+
+  .view {
+    width: 50%;
   }
 }
