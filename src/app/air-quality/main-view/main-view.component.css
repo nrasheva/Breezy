@@ -1,14 +1,13 @@
 .main-view {
-  background-color: yellow;
+  /* background-color: yellow; */
   display: flex;
   flex-direction: column;
   height: 100svh;
 }
 
-.views {
+/* .views {
   background-color: pink;
-  padding: 0.5rem;
-}
+} */
 
 .view {
     border: 1px solid black;
@@ -18,7 +17,6 @@
   .views {
     display: flex;
     justify-content: space-around;
-    padding: 0.5rem 2rem;
   }
 
   .view {
