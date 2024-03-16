@@ -1,0 +1,17 @@
+.main-view {
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+}
+
+.views {
+  background-color: pink;
+}
+
+@media only screen and (min-width: 1200px) {
+  .views {
+    display: flex;
+    justify-content: space-around;
+  }
+}
