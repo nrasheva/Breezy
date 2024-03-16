@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
 import { ErrorComponent } from './error/error.component';
 import { UserRoutingModule } from './user/user-routing-module';
+import { AirQualityModule } from './air-quality/air-quality.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ErrorComponent],
@@ -15,6 +16,7 @@ import { UserRoutingModule } from './user/user-routing-module';
     BrowserModule,
     CoreModule,
     UserModule,
+    AirQualityModule,
     UserRoutingModule,
     AppRoutingModule,
   ],
