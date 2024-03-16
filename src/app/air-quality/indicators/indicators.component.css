@@ -1,6 +1,6 @@
-.indicators {
+/* .indicators {
   background-color: palegoldenrod;
-}
+} */
 
 #location {
   width: 80%;
@@ -23,7 +23,7 @@
 .main-info {
   display: flex;
   flex-direction: column;
-  background-color: aqua;
+  /* background-color: aqua; */
   padding: 2rem;
   justify-content: center;
   align-items: center;
@@ -31,23 +31,25 @@
 }
 
 .outer-circle {
-  background-color: beige;
+  /* background-color: beige; */
   width: 250px;
   height: 250px;
   border-radius: 15rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 4px 4px 10px var(--border-color);
 }
 
 .circle-info {
   width: 200px;
   height: 200px;
-  border: 20px inset rgba(51, 153, 0, 0.65);
+  border: 20px inset var(--success-green);
   border-radius: 15rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 3px 3px 10px var(--border-color);
 }
 
 .info-message-desktop {
@@ -69,7 +71,11 @@
   width: 100%;
   padding: 1rem;
   border-bottom: 2px solid var(--border-color);
-  background-color: bisque;
+  /* background-color: bisque; */
+}
+
+.indicator:first-child {
+  border-top: 2px solid var(--border-color);
 }
 
 .mobile-indicator {
@@ -80,6 +86,15 @@
   border-radius: 10px;
 }
 
+.field-indicator {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.field-indicator p:first-child {
+  font-weight: 900;
+}
+
 .mobile-indicator li {
   list-style: none;
   color: white;
@@ -87,11 +102,14 @@
 
 .info-squares {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 2rem;
   padding: 2rem 0;
+  color: var(--dark-blue-magenta);
 }
 
 .square {
+  background-color: var(--light-green);
   text-align: center;
   padding: 1.5rem 2rem;
   border-radius: 10px;
@@ -99,11 +117,13 @@
 }
 
 .info-message-mobile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--light-blue-magenta);
+  color: white;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -121,6 +141,7 @@
 
   .main-info {
     flex-direction: row;
+    justify-content: space-evenly;
   }
 
   .more-indicators-desktop {
@@ -128,18 +149,21 @@
     flex-direction: column;
     align-items: center;
     padding: 0.5rem 1rem;
-    background-color: goldenrod;
   }
 
   .indicator {
     width: 80%;
+    background-color: var(--light-blue-magenta);
+    color: white;
   }
 
   .info-message-desktop {
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 1rem;
   }
 
