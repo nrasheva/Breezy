@@ -1,3 +1,153 @@
 .indicators {
-    background-color: red;
+  background-color: palegoldenrod;
+}
+
+#location {
+  width: 80%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  background-color: transparent;
+  color: black;
+}
+
+#location::placeholder {
+  color: grey;
+}
+
+.location {
+  display: flex;
+  justify-content: center;
+}
+
+.main-info {
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.outer-circle {
+  background-color: beige;
+  width: 250px;
+  height: 250px;
+  border-radius: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-info {
+  width: 200px;
+  height: 200px;
+  border: 20px inset rgba(51, 153, 0, 0.65);
+  border-radius: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-message-desktop {
+  display: none;
+}
+
+.more-indicators-desktop {
+  display: none;
+}
+
+.more-indicators-mobile {
+  background-color: white;
+  padding: 1rem 0 0 0;
+}
+
+.indicator {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  background-color: bisque;
+}
+
+.mobile-indicator {
+  background-color: var(--dark-blue-magenta);
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.mobile-indicator li {
+  list-style: none;
+  color: white;
+}
+
+.info-squares {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 0;
+}
+
+.square {
+  text-align: center;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px var(--border-color);
+}
+
+.info-message-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.5rem 1rem;
+}
+
+@media only screen and (min-width: 1200px) {
+  .indicators {
+    padding: 1rem;
+  }
+
+  .location {
+    justify-content: flex-start;
+  }
+
+  #location {
+    width: 100%;
+  }
+
+  .main-info {
+    flex-direction: row;
+  }
+
+  .more-indicators-desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: goldenrod;
+  }
+
+  .indicator {
+    width: 80%;
+  }
+
+  .info-message-desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .more-indicators-mobile {
+    display: none;
+  }
+
+  .info-message-mobile {
+    display: none;
+  }
 }
