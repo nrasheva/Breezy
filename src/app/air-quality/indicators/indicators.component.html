@@ -8,7 +8,9 @@
         placeholder="Localization:" />
     </div>
     <div class="info-message-mobile">
-      <div style="width: 50px; height: 50px; background-color: orange"></div>
+      <fa-icon
+        [icon]="faFaceSmileBeam"
+        style="font-size: 3em; color: var(--success-green)"></fa-icon>
       <div>
         <h3>Clear air</h3>
         <p>You can go outside without fear and enjoy the day</p>
@@ -23,37 +25,62 @@
       <div class="info-message-desktop">
         <h3>Clear air</h3>
         <p>You can go outside without fear and enjoy the day</p>
-        <div
-          style="width: 100px; height: 100px; background-color: orange"></div>
+        <fa-icon
+          [icon]="faFaceSmileBeam"
+          style="font-size: 3em; color: var(--success-green)"></fa-icon>
       </div>
     </div>
     <ul class="more-indicators-desktop">
       <li class="indicator">
-        <p>Dust</p>
+        <span class="field-indicator">
+          <fa-icon [icon]="faIndustry"></fa-icon>
+          <p>Dust</p>
+        </span>
         <p>2.0</p>
       </li>
       <li class="indicator">
-        <p>UV index</p>
+        <span class="field-indicator">
+          <fa-icon [icon]="faSun"></fa-icon>
+          <p>UV index</p>
+        </span>
         <p>2.75</p>
       </li>
       <li class="indicator">
-        <p>Particulate Matter PM<sub>10</sub></p>
+        <span class="field-indicator">
+          <p>(PM<sub>10</sub>)</p>
+          <p>Particulate Matter</p>
+        </span>
         <p>20.8</p>
       </li>
       <li class="indicator">
-        <p>Particulate Matter PM<sub>2.5</sub></p>
+        <span class="field-indicator">
+          <p>(PM<sub>2.5</sub>)</p>
+          <p>Particulate Matter</p>
+        </span>
         <p>20.8</p>
       </li>
       <li class="indicator">
-        <p>Carbon Monoxide CO</p>
+        <span class="field-indicator">
+          <p>(CO)</p>
+          <p>Carbon Monoxide</p>
+        </span>
         <p>222.0</p>
       </li>
     </ul>
     <div class="more-indicators-mobile">
       <div class="mobile-indicator">
-        <li>2.0</li>
-        <li>2.75</li>
-        <li>222.0</li>
+        <li class="field-indicator">
+          <fa-icon [icon]="faIndustry"></fa-icon>
+          <p>2.0</p>
+        </li>
+        <li class="field-indicator">
+          <fa-icon [icon]="faSun"></fa-icon>
+          <p>2.75</p>
+        </li>
+        <li class="field-indicator">
+          <fa-icon [icon]="faMaskFace"></fa-icon>
+          <p>222.0</p>
+        </li>
       </div>
       <div class="info-squares">
         <div class="square">
