@@ -1,38 +1,17 @@
 <div class="indicators">
   <div>
-    <div class="location">
-      <input
-        type="text"
-        id="location"
-        name="location"
-        placeholder="Localization:" />
-      <button class="location-button">
-        <fa-icon [icon]="faArrowRight" style="font-size: 2em"></fa-icon>
-      </button>
-    </div>
-    <div class="info-message-mobile">
-      <fa-icon
-        [icon]="faFaceSmileBeam"
-        style="font-size: 3em; color: var(--success-green)"></fa-icon>
-      <div>
-        <h3>Clear air</h3>
-        <p>You can go outside without fear and enjoy the day</p>
-      </div>
-    </div>
+    <!-- SEARCH LOCATION INPUT -->
+    <app-location-search />
+    <!-- MAIN CIRCLE INFO -->
     <div class="main-info">
       <div class="outer-circle">
         <div class="circle-info">
           <p>79 AQI</p>
         </div>
       </div>
-      <div class="info-message-desktop">
-        <h3>Clear air</h3>
-        <p>You can go outside without fear and enjoy the day</p>
-        <fa-icon
-          [icon]="faFaceSmileBeam"
-          style="font-size: 3em; color: var(--success-green)"></fa-icon>
-      </div>
+      <app-quality-info-message />
     </div>
+    <!-- DESKTOP MORE INDICATORS -->
     <ul class="more-indicators-desktop">
       <li class="indicator">
         <span class="field-indicator">
@@ -70,6 +49,7 @@
         <p>222.0</p>
       </li>
     </ul>
+    <!-- MOBILE MORE INDICATORS -->
     <div class="more-indicators-mobile">
       <div class="mobile-indicator">
         <li class="field-indicator">
