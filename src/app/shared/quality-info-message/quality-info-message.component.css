@@ -8,17 +8,9 @@
   color: white;
 }
 
-/* .info-message-desktop {
-    display: none;
-} */
-
 @media only screen and (min-width: 1200px) {
-  /* .info-message-mobile {
-    display: none;
-  } */
-
   .info-message {
-    width: 70%;
+    width: 100%;
     flex-direction: column;
     text-align: center;
     gap: 1rem;
