@@ -1,0 +1,28 @@
+.info-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--light-blue-magenta);
+  color: white;
+}
+
+/* .info-message-desktop {
+    display: none;
+} */
+
+@media only screen and (min-width: 1200px) {
+  /* .info-message-mobile {
+    display: none;
+  } */
+
+  .info-message {
+    width: 70%;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    background-color: transparent;
+    color: var(--dark-blue-magenta);
+  }
+}
