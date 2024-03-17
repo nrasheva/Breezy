@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { faSun, faFaceSmileBeam } from '@fortawesome/free-regular-svg-icons';
-import { faMaskFace, faIndustry } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMaskFace,
+  faIndustry,
+  faArrowRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-indicators',
@@ -12,4 +16,5 @@ export class IndicatorsComponent {
   faMaskFace = faMaskFace;
   faIndustry = faIndustry;
   faFaceSmileBeam = faFaceSmileBeam;
+  faArrowRight = faArrowRight;
 }
