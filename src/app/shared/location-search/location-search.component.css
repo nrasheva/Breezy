@@ -1,0 +1,38 @@
+#location {
+  width: 80%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  background-color: transparent;
+  color: black;
+}
+
+#location::placeholder {
+  color: grey;
+}
+
+#location:focus {
+  outline: none;
+}
+
+.location {
+  display: flex;
+  justify-content: center;
+}
+
+.location-button {
+  padding: 0 0 0 2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1200px) {
+  .location {
+    justify-content: flex-start;
+  }
+
+  #location {
+    width: 90%;
+  }
+}
