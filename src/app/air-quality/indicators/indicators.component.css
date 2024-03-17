@@ -15,9 +15,20 @@
   color: grey;
 }
 
+#location:focus {
+  outline: none;
+}
+
 .location {
   display: flex;
   justify-content: center;
+}
+
+.location-button {
+  padding: 0 0 0 2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .main-info {
@@ -136,7 +147,7 @@
   }
 
   #location {
-    width: 100%;
+    width: 90%;
   }
 
   .main-info {
