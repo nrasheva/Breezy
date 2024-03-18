@@ -1,10 +1,12 @@
-<div class="location">
-    <input
-      type="text"
-      id="location"
-      name="location"
-      placeholder="Localization:" />
-    <button class="location-button">
-      <fa-icon [icon]="faArrowRight" style="font-size: 2em"></fa-icon>
-    </button>
-  </div>
+<form (ngSubmit)="onSubmit()" class="location">
+  <input
+    type="text"
+    id="location"
+    name="location"
+    [(ngModel)]="location"
+    placeholder="Localization:"
+    required />
+  <button class="location-button">
+    <fa-icon [icon]="faArrowRight" style="font-size: 2em"></fa-icon>
+  </button>
+</form>
