@@ -1,21 +1,51 @@
 <div class="auth">
   <div class="login column"></div>
   <div class="column">
-    <form>
+    <form #form="ngForm" (ngSubmit)="register(form.value)">
       <h2 class="white">Register</h2>
       <input
         class="input"
         autoComplete="on"
         placeholder="Email"
         type="email"
-        value="{email}" />
+        ngModel
+        #inputEmail="ngModel"
+        name="email"
+        required
+        pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$" />
+
+      <!-- Email INPUT ERROR MESSAGES -->
+      <ng-container *ngIf="inputEmail.touched">
+        <p class="error" *ngIf="inputEmail.errors?.['required']">
+          Email is required
+        </p>
+        <p class="error" *ngIf="inputEmail.errors?.['pattern']">
+          Not a valid Email
+        </p>
+      </ng-container>
+
       <input
         class="input"
         autoComplete="on"
         placeholder="Password"
         type="password"
-        value="{password}" />
-      <button class="filled">Register</button>
+        ngModel
+        #inputPassword="ngModel"
+        name="password"
+        minlength="8"
+        required />
+
+      <!-- PASSWORD INPUT ERROR MESSAGES -->
+      <ng-container *ngIf="inputPassword.touched">
+        <p class="error" *ngIf="inputPassword.errors?.['required']">
+          You should enter a password
+        </p>
+        <p class="error" *ngIf="inputPassword.errors?.['minlength']">
+          Password must be at least 8 characters long.
+        </p>
+      </ng-container>
+
+      <button class="filled" [disabled]="form.invalid">Register</button>
       <div class="auth-actions">
         <p>
           Already have an account?
