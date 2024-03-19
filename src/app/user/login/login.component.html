@@ -1,20 +1,22 @@
 <div class="auth">
   <div class="login column"></div>
   <div class="column">
-    <form>
+    <form #form="ngForm" (ngSubmit)="login(form.value)">
       <h2 class="white">Login</h2>
       <input
         class="input"
         autoComplete="on"
         placeholder="Email"
         type="email"
-        value="{email}" />
+        [(ngModel)]="user.name"
+        name="email" />
       <input
         class="input"
         autoComplete="on"
         placeholder="Password"
         type="password"
-        value="{password}" />
+        [(ngModel)]="user.password"
+        name="password" />
       <button class="filled">Login</button>
       <div class="auth-actions">
         <p>
