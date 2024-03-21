@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { GeoapifyResponse } from 'src/app/types/GeoapifyResponse';
+import { LocationCoordinatesService } from '../services/location-coordinates.service';
 
 @Component({
   selector: 'app-location-search',
@@ -13,7 +14,10 @@ export class LocationSearchComponent {
 
   faArrowRight = faArrowRight;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private LocationCoordinatesService: LocationCoordinatesService
+  ) {}
 
   onSubmit() {
     console.log('Location submitted:', this.location);
@@ -30,12 +34,16 @@ export class LocationSearchComponent {
             'Location Coordinates:',
             response.locationCoordinates.features[0].geometry.coordinates
           );
-          const lon =
+          const longitude =
             response.locationCoordinates.features[0].geometry.coordinates[0];
-          const lat =
+          const latitude =
             response.locationCoordinates.features[0].geometry.coordinates[1];
-          console.log(lat, lon);
+          console.log(latitude, longitude);
           // Handle the response here. E.g., display it on the UI.
+          this.LocationCoordinatesService.updateLocationData({
+            latitude: latitude,
+            longitude: longitude,
+          });
         },
         error: error => {
           console.error('Error fetching location coordinates:', error);
