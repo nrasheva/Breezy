@@ -6,7 +6,7 @@
     <div class="main-info">
       <div class="outer-circle">
         <div class="circle-info">
-          <p>79 AQI</p>
+          <p>{{ airQualityData?.european_aqi }} AQI</p>
         </div>
       </div>
       <app-quality-info-message />
@@ -18,35 +18,35 @@
           <fa-icon [icon]="faIndustry"></fa-icon>
           <p>Dust</p>
         </span>
-        <p>2.0</p>
+        <p>{{ airQualityData?.dust }}</p>
       </li>
       <li class="indicator">
         <span class="field-indicator">
           <fa-icon [icon]="faSun"></fa-icon>
           <p>UV index</p>
         </span>
-        <p>2.75</p>
+        <p>{{ airQualityData?.uv_index }}</p>
       </li>
       <li class="indicator">
         <span class="field-indicator">
           <p>(PM<sub>10</sub>)</p>
           <p>Particulate Matter</p>
         </span>
-        <p>20.8</p>
+        <p>{{ airQualityData?.pm10 }}</p>
       </li>
       <li class="indicator">
         <span class="field-indicator">
           <p>(PM<sub>2.5</sub>)</p>
           <p>Particulate Matter</p>
         </span>
-        <p>20.8</p>
+        <p>{{ airQualityData?.pm2_5 }}</p>
       </li>
       <li class="indicator">
         <span class="field-indicator">
           <p>(CO)</p>
           <p>Carbon Monoxide</p>
         </span>
-        <p>222.0</p>
+        <p>{{ airQualityData?.carbon_monoxide }}</p>
       </li>
     </ul>
     <!-- MOBILE MORE INDICATORS -->
@@ -54,25 +54,25 @@
       <div class="mobile-indicator">
         <li class="field-indicator">
           <fa-icon [icon]="faIndustry"></fa-icon>
-          <p>2.0</p>
+          <p>{{ airQualityData?.dust }}</p>
         </li>
         <li class="field-indicator">
           <fa-icon [icon]="faSun"></fa-icon>
-          <p>2.75</p>
+          <p>{{ airQualityData?.uv_index }}</p>
         </li>
         <li class="field-indicator">
           <fa-icon [icon]="faMaskFace"></fa-icon>
-          <p>222.0</p>
+          <p>{{ airQualityData?.carbon_monoxide }}</p>
         </li>
       </div>
       <div class="info-squares">
         <div class="square">
           <h2>PM<sub>10</sub></h2>
-          <p>20.8</p>
+          <p>{{ airQualityData?.pm10 }}</p>
         </div>
         <div class="square">
           <h2>PM<sub>2.5</sub></h2>
-          <p>20.8</p>
+          <p>{{ airQualityData?.pm2_5 }}</p>
         </div>
       </div>
     </div>
