@@ -81,7 +81,7 @@ nav {
   }
 
   .nav-items {
-    background-color: var(--light-blue-magenta);
+    background-color: var(--lighter-blue-magenta);
     flex-direction: column;
     inset: var(--nav-height) 0 0 0;
     min-height: 100svh;
