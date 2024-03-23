@@ -30,7 +30,7 @@ export class MapComponent implements AfterViewInit {
     const customIcon = L.icon({
       iconUrl: './assets/images/airBalloon.png', // Replace with the path to your image
       iconSize: [50, 60], // Size of the icon in pixels
-      iconAnchor: [22, 47], // Point of the icon which will correspond to marker's location
+      iconAnchor: [25, 70], // Point of the icon which will correspond to marker's location
     });
 
     // Correctly initialize the class property 'this.marker'
