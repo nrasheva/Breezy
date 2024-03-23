@@ -6,13 +6,12 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
-import { ErrorComponent } from './error/error.component';
 import { UserRoutingModule } from './user/user-routing-module';
 import { AirQualityModule } from './air-quality/air-quality.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ErrorComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     CoreModule,
