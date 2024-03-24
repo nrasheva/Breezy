@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from 'src/app/types/User';
 import { NgForm } from '@angular/forms';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,11 +11,14 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterComponent {
   user: User = {
-    name: '',
-    password: '',
+    id: '',
+    email: '',
   };
 
-  // constructor() {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   register(formData: NgForm) {
     if (formData.invalid) {
@@ -21,6 +26,18 @@ export class RegisterComponent {
       return;
     }
     console.log('Form Data:', formData);
-    // Here, you'd implement your actual login logic, such as calling an authentication service
+
+    const { email, password } = formData.value;
+
+    this.userService.register(email, password).subscribe({
+      next: () => {
+        // Navigate to login or show success message
+        this.router.navigate(['/login']);
+      },
+      error: error => {
+        // Handle error scenario, such as showing an error message to the user
+        console.error('Registration failed:', error);
+      },
+    });
   }
 }
