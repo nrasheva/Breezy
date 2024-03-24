@@ -1,7 +1,7 @@
 <div class="auth">
   <div class="register column"></div>
   <div class="column">
-    <form #form="ngForm" (ngSubmit)="register(form.value)">
+    <form #form="ngForm" (ngSubmit)="register(form)">
       <h2 class="white">Register</h2>
       <input
         class="input"
@@ -12,7 +12,7 @@
         #inputEmail="ngModel"
         name="email"
         required
-        pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$" />
+        pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
 
       <!-- Email INPUT ERROR MESSAGES -->
       <ng-container *ngIf="inputEmail.touched">
