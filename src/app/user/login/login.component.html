@@ -2,7 +2,7 @@
   <div class="login column">
   </div>
   <div class="column">
-    <form #form="ngForm" (ngSubmit)="login(form.value)">
+    <form #form="ngForm" (ngSubmit)="login(form)">
       <h2 class="white">Login</h2>
       <input
         class="input"
@@ -13,7 +13,7 @@
         #inputEmail="ngModel"
         name="email"
         required
-        pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$" />
+        pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
 
       <!-- Email INPUT ERROR MESSAGES -->
       <ng-container *ngIf="inputEmail.touched">
