@@ -9,6 +9,8 @@ import { UserModule } from './user/user.module';
 import { UserRoutingModule } from './user/user-routing-module';
 import { AirQualityModule } from './air-quality/air-quality.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppInterceptor } from './app.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -21,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     UserRoutingModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
