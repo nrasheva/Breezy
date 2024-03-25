@@ -41,7 +41,14 @@
           >Register</span
         >
         <span *ngIf="isLoggedIn">Profile</span>
-        <span *ngIf="isLoggedIn">Logout</span>
+        <span
+          *ngIf="isLoggedIn"
+          (click)="logout()"
+          (keydown.enter)="logout()"
+          tabindex="0"
+          role="button">
+          <fa-icon [icon]="faRightFromBracket"></fa-icon
+        ></span>
       </div>
       <div
         class="hamburger-menu"
