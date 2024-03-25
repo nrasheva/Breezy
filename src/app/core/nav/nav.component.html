@@ -25,6 +25,7 @@
           >Air quality</span
         >
         <span
+          *ngIf="!isLoggedIn"
           routerLink="/login"
           (click)="toggleMenu()"
           (keydown)="handleKeydown($event)"
@@ -32,12 +33,15 @@
           >Login</span
         >
         <span
+          *ngIf="!isLoggedIn"
           routerLink="/register"
           (click)="toggleMenu()"
           (keydown)="handleKeydown($event)"
           tabindex="0"
           >Register</span
         >
+        <span *ngIf="isLoggedIn">Profile</span>
+        <span *ngIf="isLoggedIn">Logout</span>
       </div>
       <div
         class="hamburger-menu"
