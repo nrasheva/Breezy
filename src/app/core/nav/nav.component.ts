@@ -1,14 +1,27 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
 })
-export class NavComponent {
+export class NavComponent implements OnInit, OnDestroy {
   showMenu = window.innerWidth > 768;
+  isLoggedIn = false;
+  private authSubscription!: Subscription;
 
-  constructor() {
+  constructor(private userService: UserService) {
+    this.checkScreenWidth();
+  }
+
+  ngOnInit(): void {
+    this.authSubscription = this.userService.isLoggedIn$.subscribe(
+      isLoggedIn => {
+        this.isLoggedIn = isLoggedIn;
+      }
+    );
     this.checkScreenWidth();
   }
 
@@ -29,5 +42,11 @@ export class NavComponent {
 
   private checkScreenWidth() {
     this.showMenu = window.innerWidth > 768;
+  }
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 }
