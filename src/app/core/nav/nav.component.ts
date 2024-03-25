@@ -1,6 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/user/user.service';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +9,7 @@ import { UserService } from 'src/app/user/user.service';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit, OnDestroy {
+  faRightFromBracket = faRightFromBracket;
   showMenu = window.innerWidth > 768;
   isLoggedIn = false;
   private authSubscription!: Subscription;
@@ -42,6 +44,10 @@ export class NavComponent implements OnInit, OnDestroy {
 
   private checkScreenWidth() {
     this.showMenu = window.innerWidth > 768;
+  }
+
+  logout() {
+    this.userService.logout();
   }
 
   ngOnDestroy(): void {
