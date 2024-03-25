@@ -26,7 +26,7 @@
         >
         <span
           *ngIf="!isLoggedIn"
-          routerLink="/login"
+          routerLink="/auth/login"
           (click)="toggleMenu()"
           (keydown)="handleKeydown($event)"
           tabindex="0"
@@ -34,7 +34,7 @@
         >
         <span
           *ngIf="!isLoggedIn"
-          routerLink="/register"
+          routerLink="/auth/register"
           (click)="toggleMenu()"
           (keydown)="handleKeydown($event)"
           tabindex="0"
@@ -43,7 +43,7 @@
         <span *ngIf="isLoggedIn">Profile</span>
         <span
           *ngIf="isLoggedIn"
-          (click)="logout()"
+          (click)="logout(); toggleMenu()"
           (keydown.enter)="logout()"
           tabindex="0"
           role="button">
