@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
-import { UserModule } from './user/user.module';
 import { UserRoutingModule } from './user/user-routing-module';
 import { AirQualityModule } from './air-quality/air-quality.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +16,6 @@ import { AppInterceptor } from './app.interceptor';
   imports: [
     BrowserModule,
     CoreModule,
-    UserModule,
     HttpClientModule,
     AirQualityModule,
     UserRoutingModule,
