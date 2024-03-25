@@ -6,6 +6,10 @@ import { MainViewComponent } from './air-quality/main-view/main-view.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'home', component: HomeComponent },
+  {
+    path: 'auth',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+  },
   { path: 'air-quality', component: MainViewComponent },
   { path: '**', redirectTo: '/404' },
 ];
