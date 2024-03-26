@@ -10,12 +10,15 @@ import { LocationCoordinatesService } from 'src/app/shared/services/location-coo
 export class MapComponent implements AfterViewInit {
   private map!: L.Map;
   private marker!: L.Marker;
+  isLoading = true;
 
   constructor(private locationCoordinatesService: LocationCoordinatesService) {}
 
   ngAfterViewInit(): void {
-    this.initMap();
-    this.subscribeToLocationChanges();
+    setTimeout(() => {
+      this.initMap();
+      this.subscribeToLocationChanges();
+    }, 0); // A minimal delay
   }
 
   private initMap(): void {
@@ -53,6 +56,9 @@ export class MapComponent implements AfterViewInit {
           this.marker
             .getPopup()
             ?.setContent(`Updated location: ${latitude}, ${longitude}`);
+          if (this.isLoading) {
+            this.isLoading = false;
+          }
         }
       }
     );
