@@ -40,7 +40,14 @@
           tabindex="0"
           >Register</span
         >
-        <span *ngIf="isLoggedIn">Profile</span>
+        <span
+          *ngIf="isLoggedIn"
+          routerLink="/auth/profile"
+          (click)="toggleMenu()"
+          (keydown)="handleKeydown($event)"
+          tabindex="0"
+          >Profile</span
+        >
         <span
           *ngIf="isLoggedIn"
           (click)="logout(); toggleMenu()"
