@@ -31,6 +31,7 @@
   --success-green: rgb(0, 200, 146);
   --light-green: rgb(240, 247, 247);
   --error-red: rgb(250, 137, 156);
+  --warning-orange: rgb(225, 111, 80);
   --pale-white: rgba(255, 255, 255, 0.456);
 }
 
