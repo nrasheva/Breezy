@@ -1,17 +1,17 @@
 <!-- Good Air Quality -->
-<div *ngIf="isAqiLessThan20" class="info-message">
+<div class="info-message" *ngIf="aqiCategory === 'lessThan20'">
   <fa-icon
     [icon]="faFaceSmileBeam"
     style="font-size: 3em; color: var(--success-green)"></fa-icon>
   <div style="width: 80%">
-    <h3>Clear air</h3>
+    <h3>Good air</h3>
     <p>You can go outside without fear and enjoy the day</p>
   </div>
 </div>
 <!-- Fair Air Quality -->
-<div *ngIf="isAqiLessThan40" class="info-message">
+<div class="info-message" *ngIf="aqiCategory === 'lessThan40'">
   <fa-icon
-    [icon]="faFaceSmileBeam"
+    [icon]="faFaceSmile"
     style="font-size: 3em; color: var(--success-green)"></fa-icon>
   <div style="width: 80%">
     <h3>Fair air</h3>
@@ -19,32 +19,42 @@
   </div>
 </div>
 <!-- Moderate Air Quality -->
-<div *ngIf="isAqiLessThan60" class="info-message">
+<div class="info-message" *ngIf="aqiCategory === 'lessThan60'">
   <fa-icon
-    [icon]="faFaceSmileBeam"
-    style="font-size: 3em; color: var(--success-green)"></fa-icon>
+    [icon]="faFaceMeh"
+    style="font-size: 3em; color: var(--warning-orange)"></fa-icon>
   <div style="width: 80%">
     <h3>Moderate air</h3>
     <p>You can go outside without fear and enjoy the day</p>
   </div>
 </div>
 <!-- Poor Air Quality -->
-<div *ngIf="isAqiLessThan80" class="info-message">
+<div class="info-message" *ngIf="aqiCategory === 'lessThan80'">
   <fa-icon
-    [icon]="faFaceSmileBeam"
-    style="font-size: 3em; color: var(--success-green)"></fa-icon>
+    [icon]="faFaceFrown"
+    style="font-size: 3em; color: var(--warning-orange)"></fa-icon>
   <div style="width: 80%">
     <h3>Poor air</h3>
-    <p>You can go outside without fear and enjoy the day</p>
+    <p>Unhealthy air quality. You should avoid spending a lot of time outside.</p>
   </div>
 </div>
 <!-- Very poor Air Quality -->
-<div *ngIf="isAqiLessThan100" class="info-message">
+<div class="info-message" *ngIf="aqiCategory === 'lessThan100'">
   <fa-icon
-    [icon]="faFaceSmileBeam"
-    style="font-size: 3em; color: var(--success-green)"></fa-icon>
+    [icon]="faFaceDizzy"
+    style="font-size: 3em; color: var(--error-red)"></fa-icon>
   <div style="width: 80%">
     <h3>Very poor air</h3>
-    <p>You can go outside without fear and enjoy the day</p>
+    <p>Very unhealthy air quality. Preferably stay at home and consider wearing a mask when outside.</p>
+  </div>
+</div>
+<!-- Very poor Air Quality -->
+<div class="info-message" *ngIf="aqiCategory === 'moreThan100'">
+  <fa-icon
+    [icon]="faMaskFace"
+    style="font-size: 3em; color: black"></fa-icon>
+  <div style="width: 80%">
+    <h3>Extremely poor air</h3>
+    <p>Hazardous air quality.You should stay at home and wear a mask in case of a need of going outside</p>
   </div>
 </div>
