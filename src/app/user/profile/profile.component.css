@@ -1,0 +1,20 @@
+.views {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100svh;
+}
+
+@media only screen and (min-width: 1200px) {
+  .views {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .view {
+    width: 50%;
+  }
+
+  .view:first-of-type {
+    background-color: red;
+  }
+}
