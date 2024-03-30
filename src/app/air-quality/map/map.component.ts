@@ -15,10 +15,8 @@ export class MapComponent implements AfterViewInit {
   constructor(private locationCoordinatesService: LocationCoordinatesService) {}
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.initMap();
-      this.subscribeToLocationChanges();
-    }, 0); // A minimal delay
+    this.initMap();
+    this.subscribeToLocationChanges();
   }
 
   private initMap(): void {
