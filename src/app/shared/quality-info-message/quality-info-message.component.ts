@@ -1,5 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { faFaceSmileBeam } from '@fortawesome/free-regular-svg-icons';
+import {
+  faFaceSmileBeam,
+  faFaceDizzy,
+  faFaceFrown,
+  faFaceMeh,
+  faFaceSmile
+} from '@fortawesome/free-regular-svg-icons';
+import { faMaskFace } from '@fortawesome/free-solid-svg-icons';
 import { AirQualityData } from 'src/app/types/AirQualityData';
 import { AirQualityServiceService } from '../services/air-quality-service.service';
 import { Subscription } from 'rxjs';
@@ -11,6 +18,11 @@ import { Subscription } from 'rxjs';
 })
 export class QualityInfoMessageComponent implements OnInit, OnDestroy {
   faFaceSmileBeam = faFaceSmileBeam;
+  faMaskFace = faMaskFace;
+  faFaceDizzy = faFaceDizzy;
+  faFaceFrown = faFaceFrown;
+  faFaceMeh = faFaceMeh;
+  faFaceSmile = faFaceSmile;
 
   airQualityData?: AirQualityData | null;
   private subscription: Subscription = new Subscription();
@@ -30,24 +42,13 @@ export class QualityInfoMessageComponent implements OnInit, OnDestroy {
     // Unsubscribe to avoid memory leaks
     this.subscription.unsubscribe();
   }
-
-  get isAqiLessThan20(): boolean {
-    return (this.airQualityData?.european_aqi ?? 0) < 20;
-  }
-
-  get isAqiLessThan40(): boolean {
-    return (this.airQualityData?.european_aqi ?? 0) > 20 && (this.airQualityData?.european_aqi ?? 0) <= 40;
-  }
-
-  get isAqiLessThan60(): boolean {
-    return (this.airQualityData?.european_aqi ?? 0) > 40 && (this.airQualityData?.european_aqi ?? 0) <= 60;
-  }
-
-  get isAqiLessThan80(): boolean {
-    return (this.airQualityData?.european_aqi ?? 0) > 60 && (this.airQualityData?.european_aqi ?? 0) <= 80;
-  }
-
-  get isAqiLessThan100(): boolean {
-    return (this.airQualityData?.european_aqi ?? 0) > 80 && (this.airQualityData?.european_aqi ?? 0) <= 100;
+  get aqiCategory(): string {
+    const aqi = this.airQualityData?.european_aqi ?? 0;
+    if (aqi <= 20) return 'lessThan20';
+    if (aqi > 20 && aqi <= 40) return 'lessThan40';
+    if (aqi > 40 && aqi <= 60) return 'lessThan60';
+    if (aqi > 60 && aqi <= 80) return 'lessThan80';
+    if (aqi > 80 && aqi <= 100) return 'lessThan100';
+    return 'moreThan100';
   }
 }
