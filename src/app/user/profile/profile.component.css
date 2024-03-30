@@ -1,5 +1,4 @@
 .views {
-  display: flex;
   height: 100svh;
 }
 
@@ -10,7 +9,8 @@
 .address-field {
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 4rem 0;
+  gap: 2rem;
 }
 
 .address {
@@ -20,12 +20,21 @@
   justify-content: center;
   align-items: center;
   padding: 3rem 0;
-  border: 3px solid var(--dark-blue-magenta);
+  background-color: var(--dark-blue-magenta);
+  color: white;
   border-radius: 30rem;
+}
+
+.modify-location {
+  background-color: transparent;
+  border: none;
+  color: var(--dark-blue-magenta);
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 1200px) {
   .views {
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
@@ -37,5 +46,10 @@
   .view:first-of-type {
     display: flex;
     background-color: red;
+  }
+
+  .modify-location:hover {
+    cursor: pointer;
+    color: var(--success-green);
   }
 }
