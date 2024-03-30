@@ -6,9 +6,10 @@ import { UserRoutingModule } from './user-routing-module';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CustomLocationComponent } from './profile/custom-location/custom-location.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ProfileComponent],
+  declarations: [LoginComponent, RegisterComponent, ProfileComponent, CustomLocationComponent],
   imports: [CommonModule, UserRoutingModule, FormsModule, FontAwesomeModule],
 })
 export class UserModule {}
