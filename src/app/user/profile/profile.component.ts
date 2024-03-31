@@ -62,6 +62,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  deleteLocation(locationId: string): void {
+    this.userService.deleteLocation(locationId).subscribe({
+      next: () => {
+        // Handle successful deletion
+        console.log('Location deleted successfully.');
+      },
+      error: error => {
+        // Handle error
+        console.error('Error deleting location:', error);
+      },
+    });
+  }
+
   ngOnDestroy(): void {
     if (this.locationSubscription) {
       this.locationSubscription.unsubscribe();
