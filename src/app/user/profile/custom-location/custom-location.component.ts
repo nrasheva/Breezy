@@ -9,7 +9,6 @@ import { UserService } from '../../user.service';
 })
 export class CustomLocationComponent {
   location = '';
-  locations: Location[] = [];
 
   faArrowRight = faArrowRight;
 
@@ -33,9 +32,12 @@ export class CustomLocationComponent {
   fetchLocations(): void {
     this.userService.getLocations().subscribe({
       next: locations => {
-        this.locations = locations; 
         if (locations.length > 0) {
-          this.userService.setCurrentLocation(locations[0]);
+          const firstLocation = locations[0];
+          this.userService.setCurrentLocation(firstLocation);
+          this.location = firstLocation.location;
+        } else {
+          console.log('No locations found for this user.');
         }
       },
       error: error => console.error('Error fetching locations:', error),
