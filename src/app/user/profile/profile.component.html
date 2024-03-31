@@ -6,11 +6,11 @@
         <app-custom-location />
         <div class="address-field">
           <button class="modify-location">Edit</button>
-        <div class="address">
-          <p>Sofia</p>
+          <div class="address">
+            <p *ngIf="currentLocation">{{ currentLocation.location }}</p>
+          </div>
+          <button class="modify-location">Delete</button>
         </div>
-        <button class="modify-location">Delete</button>
-      </div>
       </div>
     </div>
   </div>
