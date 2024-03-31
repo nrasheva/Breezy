@@ -32,6 +32,36 @@
   font-weight: bold;
 }
 
+.edit-field {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#editInput {
+  width: 40%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  background-color: transparent;
+  color: black;
+}
+
+#editInput::placeholder {
+  color: grey;
+}
+
+#editInput:focus {
+  outline: none;
+}
+
+.edit-btn {
+  background-color: transparent;
+  border: none;
+  color: var(--dark-blue-magenta);
+  font-weight: bold;
+}
+
 @media only screen and (min-width: 1200px) {
   .views {
     display: flex;
@@ -49,6 +79,15 @@
   }
 
   .modify-location:hover {
+    cursor: pointer;
+    color: var(--success-green);
+  }
+
+  #editInput {
+    width: 60%;
+  }
+
+  .edit-btn:hover {
     cursor: pointer;
     color: var(--success-green);
   }
