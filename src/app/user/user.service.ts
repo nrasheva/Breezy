@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../types/User';
 import {
   BehaviorSubject,
@@ -156,6 +156,47 @@ export class UserService implements OnDestroy {
         })
       )
       .subscribe();
+  }
+
+  editLocation(locationId: string, newLocation: string): Observable<Location> {
+    const headers = new HttpHeaders({
+      id: localStorage.getItem('userId') || '', // Assuming the user's ID is stored in localStorage
+    });
+
+    return this.http
+      .put<Location>(
+        `/api/location?id=${locationId}`,
+        { content: newLocation },
+        { headers }
+      )
+      .pipe(
+        tap(updatedLocation => {
+          console.log('Location updated:', updatedLocation);
+          this.updateCurrentLocationIfNeeded(updatedLocation);
+        }),
+        catchError(error => {
+          console.error('Error updating location:', error);
+          return throwError(() => new Error('Failed to update location'));
+        })
+      );
+  }
+
+  private updateCurrentLocationIfNeeded(updatedLocation: Location) {
+    // Retrieve the current location from BehaviorSubject or localStorage
+    const currentLocation = this.currentLocation$$.value;
+
+    // Check if the updated location is the current location
+    if (currentLocation && currentLocation._id === updatedLocation._id) {
+      // Update the BehaviorSubject with the new location data
+      this.currentLocation$$.next(updatedLocation);
+
+      // Also update the location stored in localStorage
+      localStorage.setItem('currentLocation', JSON.stringify(updatedLocation));
+
+      console.log(
+        'Current location updated in BehaviorSubject and localStorage'
+      );
+    }
   }
 
   ngOnDestroy(): void {
