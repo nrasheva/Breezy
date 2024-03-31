@@ -1,18 +1,29 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { LocationCoordinatesService } from 'src/app/shared/services/location-coordinates.service';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements AfterViewInit, OnInit {
+  location = '';
   private map!: L.Map;
   private marker!: L.Marker;
+  defaultLocation = { latitude: 40.7128, longitude: -74.006 };
   isLoading = true;
 
-  constructor(private locationCoordinatesService: LocationCoordinatesService) {}
+  constructor(private locationCoordinatesService: LocationCoordinatesService, private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.userService.getCurrentLocation().subscribe(location => {
+      if (location) {
+        this.location = location.location;
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -20,7 +31,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   private initMap(): void {
-    this.map = L.map('map').setView([51.505, -0.09], 13);
+    this.map = L.map('map').setView([this.defaultLocation.latitude, this.defaultLocation.longitude], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
