@@ -18,7 +18,6 @@
 .column:first-of-type {
   display: none;
   flex: 1.5;
-  /* background-color: purple; */
 }
 
 .column:last-of-type {
