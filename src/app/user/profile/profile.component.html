@@ -14,7 +14,7 @@
           <div class="address">
             <p *ngIf="currentLocation">{{ currentLocation.location }}</p>
           </div>
-          <button class="modify-location">Delete</button>
+          <button class="modify-location" (click)="deleteLocation(currentLocation._id)">Delete</button>
         </div>
         <div class="edit-field" *ngIf="isEditing">
           <input id="editInput" type="text" [(ngModel)]="editableLocation" />
