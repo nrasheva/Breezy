@@ -10,6 +10,7 @@ import {
   throwError,
 } from 'rxjs';
 import { Router } from '@angular/router';
+import { Location } from '../types/Location';
 
 @Injectable({
   providedIn: 'root',
@@ -31,9 +32,17 @@ export class UserService implements OnDestroy {
     this.userSubscription = this.user$.subscribe(user => {
       this.user = user;
     });
+    this.initializeLocation();
 
     // Correctly placed call to initialize the user state within the constructor
     // this.initializeUserState();
+  }
+
+  private initializeLocation(): void {
+    const savedLocation = localStorage.getItem('currentLocation');
+    if (savedLocation) {
+      this.currentLocation$$.next(JSON.parse(savedLocation));
+    }
   }
 
   // private initializeUserState(): void {
@@ -49,6 +58,7 @@ export class UserService implements OnDestroy {
   //     });
   //   }
   // }
+
   private hasToken(): boolean {
     return !!localStorage.getItem('authToken');
   }
@@ -65,6 +75,7 @@ export class UserService implements OnDestroy {
           if (response.token) {
             this.handleLoginSuccess(response.token);
             this.isLoggedIn$$.next(true);
+            this.fetchAndSetUserLocation();
           } else {
             console.error('No token received');
           }
@@ -86,9 +97,10 @@ export class UserService implements OnDestroy {
 
   logout(): void {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('currentLocation');
     this.isLoggedIn$$.next(false);
     this.user$$.next(undefined);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
   // getLocation() {
@@ -111,15 +123,39 @@ export class UserService implements OnDestroy {
   }
 
   getLocations(): Observable<Location[]> {
-    return this.http.get<Location[]>('/api/location');
+    return this.http.get<Location[]>('/api/location').pipe(
+      catchError(error => {
+        console.error('Error fetching locations:', error);
+        return throwError(() => new Error('Failed to fetch locations'));
+      })
+    );
   }
 
   setCurrentLocation(location: Location): void {
     this.currentLocation$$.next(location);
+    localStorage.setItem('currentLocation', JSON.stringify(location));
   }
 
   getCurrentLocation(): Observable<Location | null> {
     return this.currentLocation$$.asObservable();
+  }
+
+  fetchAndSetUserLocation(): void {
+    this.http
+      .get<Location[]>('/api/location')
+      .pipe(
+        tap(location => {
+          console.log('Current location fetched:', location);
+          this.setCurrentLocation(location[0]);
+        }),
+        catchError(error => {
+          console.error('Error fetching current location:', error);
+          return throwError(
+            () => new Error('Failed to fetch current location')
+          );
+        })
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
