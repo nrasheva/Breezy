@@ -1,23 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { GeoapifyResponse } from 'src/app/types/GeoapifyResponse';
 import { LocationCoordinatesService } from '../services/location-coordinates.service';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-location-search',
   templateUrl: './location-search.component.html',
   styleUrls: ['./location-search.component.css'],
 })
-export class LocationSearchComponent {
+export class LocationSearchComponent implements OnInit {
   location = '';
-
+  defaultLocation = { latitude: 40.7128, longitude: -74.006 };
   faArrowRight = faArrowRight;
 
   constructor(
     private http: HttpClient,
-    private LocationCoordinatesService: LocationCoordinatesService
+    private LocationCoordinatesService: LocationCoordinatesService,
+    private userService: UserService
   ) {}
+
+  ngOnInit(): void {
+    this.userService.getCurrentLocation().subscribe(location => {
+      if (location) {
+        this.location = location.location;
+      }
+    });
+  }
 
   onSubmit() {
     console.log('Location submitted:', this.location);
