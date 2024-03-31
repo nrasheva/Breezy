@@ -103,12 +103,6 @@ export class UserService implements OnDestroy {
     this.router.navigate(['/login']);
   }
 
-  // getLocation() {
-  //   return this.http
-  //     .get<User>('api/location')
-  //     .pipe(tap(user => this.user$$.next(user)));
-  // }
-
   createLocation(locationName: string) {
     return this.http.post<Location>('/api/location', { locationName }).pipe(
       tap((data: Location) => {
@@ -160,7 +154,7 @@ export class UserService implements OnDestroy {
 
   editLocation(locationId: string, newLocation: string): Observable<Location> {
     const headers = new HttpHeaders({
-      id: localStorage.getItem('userId') || '', // Assuming the user's ID is stored in localStorage
+      id: localStorage.getItem('userId') || '',
     });
 
     return this.http
@@ -196,6 +190,36 @@ export class UserService implements OnDestroy {
       console.log(
         'Current location updated in BehaviorSubject and localStorage'
       );
+    }
+  }
+
+  deleteLocation(locationId: string): Observable<Location> {
+    const headers = new HttpHeaders({
+      id: localStorage.getItem('userId') || '', // Assuming you store the userId in localStorage
+    });
+
+    return this.http
+      .delete<Location>(`/api/location?id=${locationId}`, { headers })
+      .pipe(
+        tap(() => {
+          console.log('Location deleted successfully');
+          // Optionally, update the frontend state to reflect the deletion
+          this.removeLocationFromState(locationId);
+        }),
+        catchError(error => {
+          console.error('Error deleting location:', error);
+          return throwError(() => new Error('Failed to delete location'));
+        })
+      );
+  }
+
+  private removeLocationFromState(locationId: string): void {
+    const currentLocation = this.currentLocation$$.value;
+
+    if (currentLocation && currentLocation._id === locationId) {
+      this.currentLocation$$.next(null);
+      localStorage.removeItem('currentLocation');
+      console.log('Current location removed from state and localStorage.');
     }
   }
 
