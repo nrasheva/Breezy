@@ -4,7 +4,14 @@ import { UserService } from '../user.service';
 import { Location } from 'src/app/types/Location';
 import { AirQualityServiceService } from 'src/app/shared/services/air-quality-service.service';
 import { AirQualityData } from 'src/app/types/AirQualityData';
-import { faTree, faLeaf, faClover, faSeedling, faCannabis, faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTree,
+  faLeaf,
+  faClover,
+  faSeedling,
+  faCannabis,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import { faPagelines } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -36,16 +43,28 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    const storedAirQualityData = localStorage.getItem('airQualityData');
+    if (storedAirQualityData) {
+      this.airQualityData = JSON.parse(storedAirQualityData);
+    }
+
     this.locationSubscription = this.userService
       .getCurrentLocation()
       .subscribe(location => {
         this.currentLocation = location;
       });
+
     this.subscription.add(
       this.airQualityService.airQualityData$.subscribe(data => {
         this.airQualityData = data;
+        localStorage.setItem('airQualityData', JSON.stringify(data));
       })
     );
+
+    const storedLocation = localStorage.getItem('currentLocation');
+    if (storedLocation) {
+      this.currentLocation = JSON.parse(storedLocation);
+    }
   }
 
   startEditing(): void {
@@ -66,7 +85,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
           () => {
             console.log('Location updated successfully');
             if (currentLocation) {
-              // Update the local state
               currentLocation.location = this.editableLocation;
 
               localStorage.setItem(
