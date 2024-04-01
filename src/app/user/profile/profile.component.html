@@ -4,6 +4,7 @@
     <div class="view">
       <div style="padding: 1rem">
         <app-custom-location *ngIf="!currentLocation" />
+        <div>
         <div class="address-field" *ngIf="currentLocation">
           <button
             class="modify-location"
@@ -25,13 +26,18 @@
           <button class="edit-btn" (click)="updateLocation()">Save</button>
         </div>
         <div class="pollen-field" *ngIf="airQualityData">
-          <h2>Pollen Levels</h2>
+          <span>
+            <h2>Pollen Levels</h2>
+          </span>
           <div class="pollen">
             <span class="pollen-type">
               <div class="circle">
                 <fa-icon
                   [icon]="faTree"
-                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+                  style="
+                    font-size: 1.5em;
+                    color: var(--success-green);
+                  "></fa-icon>
               </div>
               <div>
                 <p>Alder:</p>
@@ -42,7 +48,10 @@
               <div class="circle">
                 <fa-icon
                   [icon]="faLeaf"
-                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+                  style="
+                    font-size: 1.5em;
+                    color: var(--success-green);
+                  "></fa-icon>
               </div>
               <div>
                 <p>Birch:</p>
@@ -53,7 +62,10 @@
               <div class="circle">
                 <fa-icon
                   [icon]="faClover"
-                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+                  style="
+                    font-size: 1.5em;
+                    color: var(--success-green);
+                  "></fa-icon>
               </div>
               <div>
                 <p>Grass:</p>
@@ -66,7 +78,10 @@
               <div class="circle">
                 <fa-icon
                   [icon]="faSeedling"
-                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+                  style="
+                    font-size: 1.5em;
+                    color: var(--success-green);
+                  "></fa-icon>
               </div>
               <div>
                 <p>Mugwort:</p>
@@ -77,7 +92,10 @@
               <div class="circle">
                 <fa-icon
                   [icon]="faPagelines"
-                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+                  style="
+                    font-size: 1.5em;
+                    color: var(--success-green);
+                  "></fa-icon>
               </div>
               <div>
                 <p>Olive:</p>
@@ -87,9 +105,12 @@
             <span class="pollen-type">
               <div class="circle">
                 <fa-icon
-                [icon]="faCannabis"
-                style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
-            </div>
+                  [icon]="faCannabis"
+                  style="
+                    font-size: 1.5em;
+                    color: var(--success-green);
+                  "></fa-icon>
+              </div>
               <div>
                 <p>Ragweed:</p>
                 <p>{{ airQualityData.ragweed_pollen }}</p>
