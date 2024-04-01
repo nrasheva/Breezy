@@ -11,6 +11,7 @@ import {
 } from 'rxjs';
 import { Router } from '@angular/router';
 import { Location } from '../types/Location';
+import { DecodedToken } from '../types/DecodeToken';
 
 @Injectable({
   providedIn: 'root',
@@ -74,7 +75,7 @@ export class UserService implements OnDestroy {
         tap(response => {
           if (response.token) {
             this.handleLoginSuccess(response.token);
-            this.isLoggedIn$$.next(true);
+            // this.isLoggedIn$$.next(true);
             this.fetchAndSetUserLocation();
           } else {
             console.error('No token received');
@@ -93,17 +94,38 @@ export class UserService implements OnDestroy {
 
   private handleLoginSuccess(token: string): void {
     localStorage.setItem('authToken', token);
+
+    const decodedToken = this.decodeToken(token);
+    if (decodedToken) {
+      this.user$$.next({
+        id: decodedToken.sub,
+        email: decodedToken.email,
+      });
+    }
+
+    this.isLoggedIn$$.next(true);
+  }
+
+  private decodeToken(token: string): DecodedToken | null {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      console.error('Error decoding token', e);
+      return null;
+    }
   }
 
   logout(): void {
     localStorage.removeItem('authToken');
     localStorage.removeItem('currentLocation');
+    localStorage.removeItem('airQualityData');
     this.isLoggedIn$$.next(false);
     this.user$$.next(undefined);
     this.router.navigate(['/login']);
   }
 
   createLocation(locationName: string) {
+
     return this.http.post<Location>('/api/location', { locationName }).pipe(
       tap((data: Location) => {
         console.log('Location created:', data);
@@ -176,15 +198,11 @@ export class UserService implements OnDestroy {
   }
 
   private updateCurrentLocationIfNeeded(updatedLocation: Location) {
-    // Retrieve the current location from BehaviorSubject or localStorage
     const currentLocation = this.currentLocation$$.value;
 
-    // Check if the updated location is the current location
     if (currentLocation && currentLocation._id === updatedLocation._id) {
-      // Update the BehaviorSubject with the new location data
       this.currentLocation$$.next(updatedLocation);
 
-      // Also update the location stored in localStorage
       localStorage.setItem('currentLocation', JSON.stringify(updatedLocation));
 
       console.log(
@@ -195,7 +213,7 @@ export class UserService implements OnDestroy {
 
   deleteLocation(locationId: string): Observable<Location> {
     const headers = new HttpHeaders({
-      id: localStorage.getItem('userId') || '', // Assuming you store the userId in localStorage
+      id: localStorage.getItem('userId') || '', 
     });
 
     return this.http
@@ -203,7 +221,7 @@ export class UserService implements OnDestroy {
       .pipe(
         tap(() => {
           console.log('Location deleted successfully');
-          // Optionally, update the frontend state to reflect the deletion
+  
           this.removeLocationFromState(locationId);
         }),
         catchError(error => {
