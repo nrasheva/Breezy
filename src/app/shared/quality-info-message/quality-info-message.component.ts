@@ -30,7 +30,6 @@ export class QualityInfoMessageComponent implements OnInit, OnDestroy {
   constructor(private airQualityService: AirQualityServiceService) {}
 
   ngOnInit() {
-    // Subscribe to the air quality data updates
     this.subscription.add(
       this.airQualityService.airQualityData$.subscribe(data => {
         this.airQualityData = data;
@@ -39,9 +38,9 @@ export class QualityInfoMessageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Unsubscribe to avoid memory leaks
     this.subscription.unsubscribe();
   }
+
   get aqiCategory(): string {
     const aqi = this.airQualityData?.european_aqi ?? 0;
     if (aqi <= 20) return 'lessThan20';
