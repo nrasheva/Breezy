@@ -14,11 +14,88 @@
           <div class="address">
             <p *ngIf="currentLocation">{{ currentLocation.location }}</p>
           </div>
-          <button class="modify-location" (click)="deleteLocation(currentLocation._id)">Delete</button>
+          <button
+            class="modify-location"
+            (click)="deleteLocation(currentLocation._id)">
+            Delete
+          </button>
         </div>
         <div class="edit-field" *ngIf="isEditing">
           <input id="editInput" type="text" [(ngModel)]="editableLocation" />
           <button class="edit-btn" (click)="updateLocation()">Save</button>
+        </div>
+        <div class="pollen-field" *ngIf="airQualityData">
+          <h2>Pollen Levels</h2>
+          <div class="pollen">
+            <span class="pollen-type">
+              <div class="circle">
+                <fa-icon
+                  [icon]="faTree"
+                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+              </div>
+              <div>
+                <p>Alder:</p>
+                <p>{{ airQualityData.alder_pollen }}</p>
+              </div>
+            </span>
+            <span class="pollen-type">
+              <div class="circle">
+                <fa-icon
+                  [icon]="faLeaf"
+                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+              </div>
+              <div>
+                <p>Birch:</p>
+                <p>{{ airQualityData.birch_pollen }}</p>
+              </div>
+            </span>
+            <span class="pollen-type">
+              <div class="circle">
+                <fa-icon
+                  [icon]="faClover"
+                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+              </div>
+              <div>
+                <p>Grass:</p>
+                <p>{{ airQualityData.grass_pollen }}</p>
+              </div>
+            </span>
+          </div>
+          <div class="pollen">
+            <span class="pollen-type">
+              <div class="circle">
+                <fa-icon
+                  [icon]="faSeedling"
+                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+              </div>
+              <div>
+                <p>Mugwort:</p>
+                <p>{{ airQualityData.mugwort_pollen }}</p>
+              </div>
+            </span>
+            <span class="pollen-type">
+              <div class="circle">
+                <fa-icon
+                  [icon]="faPagelines"
+                  style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+              </div>
+              <div>
+                <p>Olive:</p>
+                <p>{{ airQualityData.olive_pollen }}</p>
+              </div>
+            </span>
+            <span class="pollen-type">
+              <div class="circle">
+                <fa-icon
+                [icon]="faCannabis"
+                style="font-size: 1.5em; color: var(--success-green)"></fa-icon>
+            </div>
+              <div>
+                <p>Ragweed:</p>
+                <p>{{ airQualityData.ragweed_pollen }}</p>
+              </div>
+            </span>
+          </div>
         </div>
       </div>
     </div>
