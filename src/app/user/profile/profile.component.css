@@ -35,6 +35,7 @@
 .edit-field {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -81,6 +82,7 @@
   display: flex;
   justify-content: space-evenly;
   gap: 1rem;
+  color: var(--dark-blue-magenta);
 }
 
 .pollen-type {
@@ -134,7 +136,13 @@
     color: var(--success-green);
   }
 
+  .edit-field fa-icon:hover {
+    cursor: pointer;
+    color: var(--success-green);
+  }
+
   .pollen-field {
-    margin: 3rem;
+    margin: 1rem 3rem;
+    padding: 3rem 0;
   }
 }
