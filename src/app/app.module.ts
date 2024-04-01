@@ -10,9 +10,11 @@ import { AirQualityModule } from './air-quality/air-quality.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from './app.interceptor';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, AuthenticateComponent],
   imports: [
     BrowserModule,
     CoreModule,
@@ -20,10 +22,12 @@ import { AppInterceptor } from './app.interceptor';
     AirQualityModule,
     UserRoutingModule,
     AppRoutingModule,
+    SharedModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
+
 export class AppModule {}
