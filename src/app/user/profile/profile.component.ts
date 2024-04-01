@@ -2,6 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserService } from '../user.service';
 import { Location } from 'src/app/types/Location';
+import { AirQualityServiceService } from 'src/app/shared/services/air-quality-service.service';
+import { AirQualityData } from 'src/app/types/AirQualityData';
+import { faTree, faLeaf, faClover, faSeedling, faCannabis } from '@fortawesome/free-solid-svg-icons';
+import { faPagelines } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +16,23 @@ export class ProfileComponent implements OnInit, OnDestroy {
   currentLocation: Location | null = null;
   isEditing = false;
   editableLocation = '';
+
+  faTree = faTree;
+  faLeaf = faLeaf;
+  faClover = faClover;
+  faPagelines = faPagelines;
+  faSeedling = faSeedling;
+  faCannabis = faCannabis;
+
   private locationSubscription: Subscription | undefined;
 
-  constructor(private userService: UserService) {}
+  airQualityData?: AirQualityData | null;
+  private subscription: Subscription = new Subscription();
+
+  constructor(
+    private userService: UserService,
+    private airQualityService: AirQualityServiceService
+  ) {}
 
   ngOnInit(): void {
     this.locationSubscription = this.userService
@@ -22,6 +40,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .subscribe(location => {
         this.currentLocation = location;
       });
+    this.subscription.add(
+      this.airQualityService.airQualityData$.subscribe(data => {
+        this.airQualityData = data;
+      })
+    );
   }
 
   startEditing(): void {
