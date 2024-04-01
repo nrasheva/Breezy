@@ -4,7 +4,7 @@ import { UserService } from '../user.service';
 import { Location } from 'src/app/types/Location';
 import { AirQualityServiceService } from 'src/app/shared/services/air-quality-service.service';
 import { AirQualityData } from 'src/app/types/AirQualityData';
-import { faTree, faLeaf, faClover, faSeedling, faCannabis } from '@fortawesome/free-solid-svg-icons';
+import { faTree, faLeaf, faClover, faSeedling, faCannabis, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPagelines } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   faPagelines = faPagelines;
   faSeedling = faSeedling;
   faCannabis = faCannabis;
+  faXmark = faXmark;
 
   private locationSubscription: Subscription | undefined;
 
