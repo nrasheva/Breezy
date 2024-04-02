@@ -138,7 +138,7 @@ export class UserService implements OnDestroy {
     );
   }
 
-  getLocations(): Observable<Location[]> {
+  getLocation(): Observable<Location[]> {
     return this.http.get<Location[]>('/api/location').pipe(
       catchError(error => {
         console.error('Error fetching locations:', error);
