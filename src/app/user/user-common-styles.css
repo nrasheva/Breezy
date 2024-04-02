@@ -76,8 +76,6 @@ input:-webkit-autofill:active {
   transition: background-color 5000000s ease-in-out 0s;
 }
 
-
-
 .error {
   color: var(--error-red);
   margin-bottom: 1rem;
