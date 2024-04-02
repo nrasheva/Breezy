@@ -104,11 +104,11 @@
   border: 20px inset var(--success-green); /* Good */
 }
 
-.aqi-lessThan60 {
+.aqi-lessThan60,
+.aqi-lessThan80 {
   border: 20px inset var(--warning-orange); /* Unhealthy for sensitive groups */
 }
 
-.aqi-lessThan80,
 .aqi-lessThan100 {
   border: 20px inset var(--error-red); /* Unhealthy */
 }
@@ -124,7 +124,8 @@
 
   .main-info {
     flex-direction: row;
-    padding: 2rem 4rem;
+    padding: 2rem;
+    margin: 0 5rem;
   }
 
   .more-indicators-desktop {
