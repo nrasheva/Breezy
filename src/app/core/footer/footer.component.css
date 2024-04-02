@@ -2,6 +2,27 @@
   background-color: var(--dark-blue-magenta);
   color: white;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
   padding: 1rem 2rem;
+  font-size: 10px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  cursor: pointer;
+  color: var(--success-green);
+}
+
+@media only screen and (min-width: 1200px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: small;
+  }
 }
