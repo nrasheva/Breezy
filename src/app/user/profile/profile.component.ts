@@ -23,6 +23,7 @@ import { LocationCoordinatesService } from 'src/app/shared/services/location-coo
 export class ProfileComponent implements OnInit, OnDestroy {
   currentLocation: Location | null = null;
   isEditing = false;
+  isLoading = true;
   editableLocation = '';
 
   faTree = faTree;
@@ -36,7 +37,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private locationSubscription: Subscription | undefined;
 
   airQualityData?: AirQualityData | null;
-  private subscription: Subscription = new Subscription();
+  // private subscription: Subscription = new Subscription();
 
   private coordinatesSubscription?: Subscription;
 
@@ -57,20 +58,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   initUserProfile(): void {
-    // Fetch user's profile to get the location (as a string, for instance)
     this.userService.getCurrentLocation().subscribe(profileLocation => {
       if (profileLocation) {
-        // Assuming profileLocation.location is a string like "New York, NY"
         this.locationCoordinatesService.fetchLocationCoordinates(
           profileLocation.location
         );
 
-        // Now, subscribe to the location data changes
         this.coordinatesSubscription =
           this.locationCoordinatesService.currentLocationData.subscribe({
             next: ({ latitude, longitude }) => {
               if (latitude && longitude) {
-                // With valid coordinates, fetch the air quality data
                 this.fetchAirQualityDataForLocation(latitude, longitude);
               }
             },
@@ -82,9 +79,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   fetchAirQualityDataForLocation(lat: number, lon: number): void {
+    this.isLoading = true;
+    
     this.airQualityService.fetchAirQuality(lat, lon).subscribe({
       next: data => {
         this.airQualityData = data;
+        this.isLoading = false;
       },
       error: error => {
         console.error('Error fetching air quality data:', error);
