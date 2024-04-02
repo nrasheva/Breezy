@@ -3,6 +3,9 @@ import { AirQualityData } from 'src/app/types/AirQualityData';
 import { AirQualityServiceService } from 'src/app/shared/services/air-quality-service.service';
 import { faSun, faFaceSmileBeam } from '@fortawesome/free-regular-svg-icons';
 import { faMaskFace, faIndustry } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
+import { LocationCoordinatesService } from 'src/app/shared/services/location-coordinates.service';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-indicators',
@@ -17,19 +20,34 @@ export class IndicatorsComponent implements OnInit {
 
   airQualityData?: AirQualityData;
 
-  constructor(private airQualityService: AirQualityServiceService) {}
+  private locationSubscription?: Subscription;
+
+  constructor(
+    private airQualityService: AirQualityServiceService,
+    private locationCoordinatesService: LocationCoordinatesService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.fetchAirQualityData();
+    this.locationSubscription =
+      this.locationCoordinatesService.currentLocationData.subscribe({
+        next: locationData => {
+          if (locationData) {
+            this.fetchAirQualityData(
+              locationData.latitude,
+              locationData.longitude
+            );
+          }
+        },
+        error: error => console.error('Error getting location data:', error),
+      });
   }
 
-  fetchAirQualityData(): void {
-    // Assuming fetchAirQualityForCurrentLocation subscribes to location changes
-    this.airQualityService.fetchAirQualityForCurrentLocation().subscribe({
+  fetchAirQualityData(lat: number, lon: number): void {
+    this.airQualityService.fetchAirQuality(lat, lon).subscribe({
       next: data => {
         this.airQualityData = data;
-        console.log('Air Quality Data:', this.airQualityData);
-        // Now airQualityData is bound to your template and can be displayed
+        localStorage.setItem('airQualityData', JSON.stringify(data));
       },
       error: error => console.error('Error fetching air quality data:', error),
     });
