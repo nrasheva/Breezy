@@ -32,9 +32,9 @@ export class AirQualityServiceService {
       switchMap(({ latitude, longitude }) =>
         this.fetchAirQuality(latitude, longitude)
       ),
-      tap((airQualityData: AirQualityData) =>
-        this.airQualityDataSource.next(airQualityData)
-      )
+      tap((airQualityData: AirQualityData) => {
+        this.airQualityDataSource.next(airQualityData);
+      })
     );
   }
 }
