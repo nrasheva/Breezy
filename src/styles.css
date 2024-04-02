@@ -45,6 +45,16 @@ button {
   background-color: var(--light-blue-magenta);
 }
 
+.blank {
+  background-color: var(--dark-blue-magenta);
+  color: white;
+}
+
+.blank:hover {
+  background-color: var(--light-blue-magenta);
+  border: 1px solid var(--dark-blue-magenta);
+}
+
 /*-------------------------Variables-------------------------*/
 
 :root {
