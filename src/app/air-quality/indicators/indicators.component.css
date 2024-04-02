@@ -25,7 +25,7 @@
 .circle-info {
   width: 200px;
   height: 200px;
-  border: 20px inset var(--success-green);
+  /* border: 20px inset var(--success-green); */
   border-radius: 15rem;
   display: flex;
   align-items: center;
@@ -95,6 +95,26 @@
   padding: 1.5rem 2rem;
   border-radius: 10px;
   box-shadow: 3px 3px 5px var(--border-color);
+}
+
+/* --------------------------------------------------Circle indicator classes----------------------------------------------------------------- */
+
+.aqi-lessThan20,
+.aqi-lessThan40 {
+  border: 20px inset var(--success-green); /* Good */
+}
+
+.aqi-lessThan60 {
+  border: 20px inset var(--warning-orange); /* Unhealthy for sensitive groups */
+}
+
+.aqi-lessThan80,
+.aqi-lessThan100 {
+  border: 20px inset var(--error-red); /* Unhealthy */
+}
+
+.aqi-moreThan100 {
+  border: 20px inset black; /* Hazardous */
 }
 
 @media only screen and (min-width: 1200px) {
