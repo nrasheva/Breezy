@@ -5,7 +5,6 @@ import { faSun, faFaceSmileBeam } from '@fortawesome/free-regular-svg-icons';
 import { faMaskFace, faIndustry } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { LocationCoordinatesService } from 'src/app/shared/services/location-coordinates.service';
-import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-indicators',
@@ -19,13 +18,11 @@ export class IndicatorsComponent implements OnInit {
   faFaceSmileBeam = faFaceSmileBeam;
 
   airQualityData?: AirQualityData;
-
   private locationSubscription?: Subscription;
 
   constructor(
     private airQualityService: AirQualityServiceService,
-    private locationCoordinatesService: LocationCoordinatesService,
-    private userService: UserService
+    private locationCoordinatesService: LocationCoordinatesService
   ) {}
 
   ngOnInit(): void {
@@ -51,5 +48,15 @@ export class IndicatorsComponent implements OnInit {
       },
       error: error => console.error('Error fetching air quality data:', error),
     });
+  }
+
+  get aqiCategory(): string {
+    const aqi = this.airQualityData?.european_aqi ?? 0;
+    if (aqi <= 20) return 'aqi-lessThan20';
+    if (aqi > 20 && aqi <= 40) return 'aqi-lessThan40';
+    if (aqi > 40 && aqi <= 60) return 'aqi-lessThan60';
+    if (aqi > 60 && aqi <= 80) return 'aqi-lessThan80';
+    if (aqi > 80 && aqi <= 100) return 'aqi-lessThan100';
+    return 'aqi-moreThan100';
   }
 }
