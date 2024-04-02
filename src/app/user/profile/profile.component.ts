@@ -13,6 +13,7 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { faPagelines } from '@fortawesome/free-brands-svg-icons';
+import { LocationCoordinatesService } from 'src/app/shared/services/location-coordinates.service';
 
 @Component({
   selector: 'app-profile',
@@ -37,34 +38,58 @@ export class ProfileComponent implements OnInit, OnDestroy {
   airQualityData?: AirQualityData | null;
   private subscription: Subscription = new Subscription();
 
+  private coordinatesSubscription?: Subscription;
+
   constructor(
     private userService: UserService,
-    private airQualityService: AirQualityServiceService
+    private airQualityService: AirQualityServiceService,
+    private locationCoordinatesService: LocationCoordinatesService
   ) {}
 
   ngOnInit(): void {
-    const storedAirQualityData = localStorage.getItem('airQualityData');
-    if (storedAirQualityData) {
-      this.airQualityData = JSON.parse(storedAirQualityData);
-    }
-
     this.locationSubscription = this.userService
       .getCurrentLocation()
       .subscribe(location => {
         this.currentLocation = location;
       });
 
-    this.subscription.add(
-      this.airQualityService.airQualityData$.subscribe(data => {
-        this.airQualityData = data;
-        localStorage.setItem('airQualityData', JSON.stringify(data));
-      })
-    );
+    this.initUserProfile();
+  }
 
-    const storedLocation = localStorage.getItem('currentLocation');
-    if (storedLocation) {
-      this.currentLocation = JSON.parse(storedLocation);
-    }
+  initUserProfile(): void {
+    // Fetch user's profile to get the location (as a string, for instance)
+    this.userService.getCurrentLocation().subscribe(profileLocation => {
+      if (profileLocation) {
+        // Assuming profileLocation.location is a string like "New York, NY"
+        this.locationCoordinatesService.fetchLocationCoordinates(
+          profileLocation.location
+        );
+
+        // Now, subscribe to the location data changes
+        this.coordinatesSubscription =
+          this.locationCoordinatesService.currentLocationData.subscribe({
+            next: ({ latitude, longitude }) => {
+              if (latitude && longitude) {
+                // With valid coordinates, fetch the air quality data
+                this.fetchAirQualityDataForLocation(latitude, longitude);
+              }
+            },
+            error: error =>
+              console.error('Error getting location data:', error),
+          });
+      }
+    });
+  }
+
+  fetchAirQualityDataForLocation(lat: number, lon: number): void {
+    this.airQualityService.fetchAirQuality(lat, lon).subscribe({
+      next: data => {
+        this.airQualityData = data;
+      },
+      error: error => {
+        console.error('Error fetching air quality data:', error);
+      },
+    });
   }
 
   startEditing(): void {
@@ -120,6 +145,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.locationSubscription) {
       this.locationSubscription.unsubscribe();
+      this.coordinatesSubscription?.unsubscribe();
     }
   }
 }
