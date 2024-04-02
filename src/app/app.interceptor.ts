@@ -4,6 +4,7 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { ErrorService } from './core/error/error.service';
@@ -28,6 +29,8 @@ export class AppInterceptor implements HttpInterceptor {
       if (this.isTokenExpired(authToken)) {
         localStorage.removeItem('authToken');
         this.router.navigate(['/login']);
+        localStorage.removeItem('currentLocation');
+        localStorage.removeItem('airQualityData');
         return throwError(() => new Error('Token has expired'));
       }
 
@@ -35,19 +38,25 @@ export class AppInterceptor implements HttpInterceptor {
         headers: request.headers.set('Authorization', `Bearer ${authToken}`),
       });
       return next.handle(authReq);
-    } else {
-      // this.router.navigate(['/home']);
     }
 
     // Handling errors globally
     return next.handle(request).pipe(
-      catchError(err => {
-        if (err.status === 403) {
-          console.log('Not authenticated');
-          this.router.navigate(['/login']);
-        } else {
-          this.errorService.setError(err);
-          this.router.navigate(['/error']);
+      catchError((err: HttpErrorResponse) => {
+        switch (err.status) {
+          case 401:
+            // Unauthorized
+            this.router.navigate(['/auth/login']);
+            break;
+          case 403:
+            // Forbidden
+            console.log('Not authorized');
+            this.router.navigate(['/auth/login']);
+            break;
+          default:
+            // Global error handling
+            this.errorService.setError(err);
+            this.router.navigate(['/error']);
         }
         return throwError(() => err);
       })
@@ -55,8 +64,13 @@ export class AppInterceptor implements HttpInterceptor {
   }
 
   private isTokenExpired(token: string): boolean {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const now = Date.now() / 1000;
-    return payload.exp < now;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const now = Date.now() / 1000;
+      return payload.exp < now;
+    } catch (error) {
+      console.error('Error checking token expiration', error);
+      return true;
+    }
   }
 }
