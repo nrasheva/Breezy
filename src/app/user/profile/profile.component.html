@@ -34,7 +34,7 @@
             <button class="edit-btn" (click)="updateLocation()">Save</button>
           </div>
           <app-loader *ngIf="isLoading"/>
-          <div class="pollen-field" *ngIf="airQualityData">
+          <div class="pollen-field" *ngIf="airQualityData && currentLocation">
             <span>
               <h2>Pollen Levels</h2>
             </span>
