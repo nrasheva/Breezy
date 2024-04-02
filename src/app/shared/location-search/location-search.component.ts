@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { GeoapifyResponse } from 'src/app/types/GeoapifyResponse';
 import { LocationCoordinatesService } from '../services/location-coordinates.service';
 import { UserService } from 'src/app/user/user.service';
 
@@ -12,52 +10,27 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class LocationSearchComponent implements OnInit {
   location = '';
-  defaultLocation = { latitude: 40.7128, longitude: -74.006 };
+  defaultLocation = { latitude: 42.698334, longitude: 23.319941 };
   faArrowRight = faArrowRight;
 
   constructor(
-    private http: HttpClient,
     private LocationCoordinatesService: LocationCoordinatesService,
     private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.userService.getCurrentLocation().subscribe(location => {
-      if (location) {
+      if (location && location.location) {
         this.location = location.location;
+      } else {
+        this.location = `Sofia`;
       }
+      this.LocationCoordinatesService.fetchLocationCoordinates(this.location);
     });
   }
 
   onSubmit() {
     console.log('Location submitted:', this.location);
-    this.fetchLocationCoordinates();
-  }
-
-  fetchLocationCoordinates() {
-    const params = { location: this.location };
-    this.http
-      .get<GeoapifyResponse>('/api/getLocationCoordinates', { params })
-      .subscribe({
-        next: response => {
-          console.log(
-            'Location Coordinates:',
-            response.locationCoordinates.features[0].geometry.coordinates
-          );
-          const longitude =
-            response.locationCoordinates.features[0].geometry.coordinates[0];
-          const latitude =
-            response.locationCoordinates.features[0].geometry.coordinates[1];
-          console.log(latitude, longitude);
-          // Handle the response here. E.g., display it on the UI.
-          this.LocationCoordinatesService.updateLocationData({
-            latitude: latitude,
-            longitude: longitude,
-          });
-        },
-        error: error => {
-          console.error('Error fetching location coordinates:', error);
-        },
-      });
+    this.LocationCoordinatesService.fetchLocationCoordinates(this.location);
   }
 }
