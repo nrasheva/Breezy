@@ -5,7 +5,7 @@
     <!-- MAIN CIRCLE INFO -->
     <div class="main-info">
       <div class="outer-circle">
-        <div class="circle-info">
+        <div class="circle-info" [ngClass]="aqiCategory">
           <p>{{ airQualityData?.european_aqi }} AQI</p>
         </div>
       </div>
