@@ -23,7 +23,7 @@ import { LocationCoordinatesService } from 'src/app/shared/services/location-coo
 export class ProfileComponent implements OnInit, OnDestroy {
   currentLocation: Location | null = null;
   isEditing = false;
-  isLoading = true;
+  isLoading = false;
   editableLocation = '';
 
   faTree = faTree;

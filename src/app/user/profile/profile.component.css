@@ -1,5 +1,5 @@
 .views {
-  height: 100svh;
+  min-height: 90svh;
 }
 
 .view:first-of-type {
@@ -10,11 +10,13 @@
   display: flex;
   justify-content: center;
   color: var(--dark-blue-magenta);
+  margin-top: 2rem;
 }
 
 .address-field {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 2rem 0;
   gap: 2rem;
 }
@@ -76,7 +78,7 @@
   flex-direction: column;
   text-align: center;
   padding: 2rem 0;
-  margin: 3rem 0;
+  margin: 1rem;
   border-radius: 10px;
 }
 
@@ -148,7 +150,7 @@
   }
 
   .pollen-field {
-    margin: 3rem;
+    margin: 4rem;
     padding: 3rem 0;
   }
 }
