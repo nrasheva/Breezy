@@ -4,7 +4,7 @@ import {
   faFaceDizzy,
   faFaceFrown,
   faFaceMeh,
-  faFaceSmile
+  faFaceSmile,
 } from '@fortawesome/free-regular-svg-icons';
 import { faMaskFace } from '@fortawesome/free-solid-svg-icons';
 import { AirQualityData } from 'src/app/types/AirQualityData';
@@ -30,15 +30,20 @@ export class QualityInfoMessageComponent implements OnInit, OnDestroy {
   constructor(private airQualityService: AirQualityServiceService) {}
 
   ngOnInit() {
+    this.airQualityService.fetchAirQualityForCurrentLocation().subscribe();
+    this.subscribeToAirQualityData();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  private subscribeToAirQualityData() {
     this.subscription.add(
       this.airQualityService.airQualityData$.subscribe(data => {
         this.airQualityData = data;
       })
     );
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   get aqiCategory(): string {
