@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QualityInfoMessageComponent } from './quality-info-message/quality-info-message.component';
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
+import { LocationCoordinatesService } from './services/location-coordinates.service';
 
 @NgModule({
   declarations: [
@@ -18,5 +19,6 @@ import { LoaderComponent } from './loader/loader.component';
     QualityInfoMessageComponent,
     LoaderComponent,
   ],
+  providers: [LocationCoordinatesService],
 })
 export class SharedModule {}
