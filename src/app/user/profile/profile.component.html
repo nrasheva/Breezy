@@ -5,6 +5,9 @@
       <div style="padding: 1rem">
         <app-custom-location *ngIf="!currentLocation" />
         <div>
+          <div class="current-location" *ngIf="currentLocation">
+            <p>Your chosen location</p>
+          </div>
           <div class="address-field" *ngIf="currentLocation">
             <button
               class="modify-location"
