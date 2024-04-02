@@ -6,10 +6,16 @@
   display: none;
 }
 
+.current-location {
+  display: flex;
+  justify-content: center;
+  color: var(--dark-blue-magenta);
+}
+
 .address-field {
   display: flex;
   justify-content: center;
-  padding: 4rem 0;
+  padding: 2rem 0;
   gap: 2rem;
 }
 
@@ -142,7 +148,7 @@
   }
 
   .pollen-field {
-    margin: 1rem 3rem;
+    margin: 3rem;
     padding: 3rem 0;
   }
 }
