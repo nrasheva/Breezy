@@ -19,6 +19,11 @@
   /* background-color: red; */
 }
 
+.views {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 /*-------------------------Variables-------------------------*/
 
 :root {
@@ -41,4 +46,15 @@
 
 .white {
   color: white;
+}
+
+@media only screen and (min-width: 1200px) {
+  .views {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .view {
+    width: 50%;
+  }
 }
