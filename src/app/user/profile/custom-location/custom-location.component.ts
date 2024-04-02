@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../../user.service';
+import { LocationCoordinatesService } from 'src/app/shared/services/location-coordinates.service';
 
 @Component({
   selector: 'app-custom-location',
@@ -12,7 +13,10 @@ export class CustomLocationComponent {
 
   faArrowRight = faArrowRight;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private locationCoordinatesService: LocationCoordinatesService
+  ) {}
 
   onSubmit() {
     if (!this.location) {
@@ -23,14 +27,15 @@ export class CustomLocationComponent {
     this.userService.createLocation(this.location).subscribe({
       next: () => {
         console.log('Location created successfully');
-        this.fetchLocations();
+        this.locationCoordinatesService.fetchLocationCoordinates(this.location);
+        this.fetchLocation();
       },
       error: error => console.error('Error creating location:', error),
     });
   }
 
-  fetchLocations(): void {
-    this.userService.getLocations().subscribe({
+  fetchLocation(): void {
+    this.userService.getLocation().subscribe({
       next: locations => {
         if (locations.length > 0) {
           const firstLocation = locations[0];
