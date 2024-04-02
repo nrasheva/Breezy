@@ -76,24 +76,7 @@ input:-webkit-autofill:active {
   transition: background-color 5000000s ease-in-out 0s;
 }
 
-button {
-  background: none;
-  border-radius: 1rem;
-  border: none;
-  cursor: pointer;
-  height: 3rem;
-  white-space: nowrap;
-}
 
-.filled {
-  background-color: var(--dark-blue-magenta);
-  color: white;
-  padding: 0 2rem;
-}
-
-.filled:hover {
-  background-color: var(--light-blue-magenta);
-}
 
 .error {
   color: var(--error-red);
