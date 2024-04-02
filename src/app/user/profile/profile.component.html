@@ -33,6 +33,7 @@
             <input id="editInput" type="text" [(ngModel)]="editableLocation" />
             <button class="edit-btn" (click)="updateLocation()">Save</button>
           </div>
+          <app-loader *ngIf="isLoading"/>
           <div class="pollen-field" *ngIf="airQualityData">
             <span>
               <h2>Pollen Levels</h2>
