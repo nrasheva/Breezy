@@ -11,7 +11,7 @@
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
+  min-height: 9svh;
 }
 
 .main {
@@ -22,6 +22,27 @@
 .views {
   display: flex;
   flex-direction: column-reverse;
+}
+
+/* ----------------------------------------------------------Buttons------------------------------------------------------ */
+
+button {
+  background: none;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  height: 3rem;
+  white-space: nowrap;
+}
+
+.filled {
+  background-color: var(--dark-blue-magenta);
+  color: white;
+  padding: 0 2rem;
+}
+
+.filled:hover {
+  background-color: var(--light-blue-magenta);
 }
 
 /*-------------------------Variables-------------------------*/
