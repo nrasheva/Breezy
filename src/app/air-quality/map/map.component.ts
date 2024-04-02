@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { LocationCoordinatesService } from 'src/app/shared/services/location-coordinates.service';
 import { UserService } from 'src/app/user/user.service';
@@ -8,7 +8,7 @@ import { UserService } from 'src/app/user/user.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements AfterViewInit, OnInit {
+export class MapComponent implements OnInit {
   location = '';
   private map!: L.Map;
   private marker!: L.Marker;
@@ -23,9 +23,6 @@ export class MapComponent implements AfterViewInit, OnInit {
         this.location = location.location;
       }
     });
-  }
-
-  ngAfterViewInit(): void {
     this.initMap();
     this.subscribeToLocationChanges();
   }
@@ -40,12 +37,11 @@ export class MapComponent implements AfterViewInit, OnInit {
     }).addTo(this.map);
 
     const customIcon = L.icon({
-      iconUrl: './assets/images/airBalloon.png', // Replace with the path to your image
-      iconSize: [50, 60], // Size of the icon in pixels
-      iconAnchor: [25, 70], // Point of the icon which will correspond to marker's location
+      iconUrl: './assets/images/airBalloon.png',
+      iconSize: [50, 60], 
+      iconAnchor: [25, 70], 
     });
 
-    // Correctly initialize the class property 'this.marker'
     this.marker = L.marker([51.505, -0.09], { icon: customIcon }).addTo(
       this.map
     );
@@ -55,7 +51,6 @@ export class MapComponent implements AfterViewInit, OnInit {
   private subscribeToLocationChanges(): void {
     this.locationCoordinatesService.currentLocationData.subscribe(
       ({ latitude, longitude }) => {
-        // Ensure this.marker is used to update its position
         if (this.map && this.marker) {
           this.map.setView(
             new L.LatLng(latitude, longitude),
