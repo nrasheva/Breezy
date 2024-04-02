@@ -20,8 +20,8 @@ export class AirQualityServiceService {
   ) {}
 
   fetchAirQuality(lat: number, lon: number): Observable<AirQualityData> {
-    const baseURL = '/api/getAirQuality'; 
-    const params = { params: { lat, lng: lon } };
+    const baseURL = '/api/getAirQuality';
+    const params = { params: { lat: lat, lng: lon } };
     return this.http
       .get<{ airQuality: { current: AirQualityData } }>(baseURL, params)
       .pipe(map(response => response.airQuality.current));
@@ -32,7 +32,9 @@ export class AirQualityServiceService {
       switchMap(({ latitude, longitude }) =>
         this.fetchAirQuality(latitude, longitude)
       ),
-      tap((airQualityData: AirQualityData) => this.airQualityDataSource.next(airQualityData))
+      tap((airQualityData: AirQualityData) =>
+        this.airQualityDataSource.next(airQualityData)
+      )
     );
   }
 }
