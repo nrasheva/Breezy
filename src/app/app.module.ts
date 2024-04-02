@@ -12,9 +12,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from './app.interceptor';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { SharedModule } from './shared/shared.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AuthenticateComponent],
+  declarations: [AppComponent, HomeComponent, AuthenticateComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     CoreModule,
