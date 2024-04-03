@@ -1,7 +1,3 @@
-/* .indicators {
-  background-color: palegoldenrod;
-} */
-
 .main-info {
   display: flex;
   flex-direction: column-reverse;
@@ -12,7 +8,6 @@
 }
 
 .outer-circle {
-  /* background-color: beige; */
   width: 200px;
   height: 200px;
   border-radius: 15rem;
@@ -54,7 +49,6 @@
   width: 100%;
   padding: 1rem;
   border-bottom: 2px solid var(--border-color);
-  /* background-color: bisque; */
 }
 
 .indicator:first-child {

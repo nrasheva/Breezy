@@ -132,11 +132,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   deleteLocation(locationId: string): void {
     this.userService.deleteLocation(locationId).subscribe({
       next: () => {
-        // Handle successful deletion
+        // Handle successful deletion to be implemented
         console.log('Location deleted successfully.');
       },
       error: error => {
-        // Handle error
+        // Handle error to be implemented
         console.error('Error deleting location:', error);
       },
     });

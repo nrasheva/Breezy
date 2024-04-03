@@ -31,11 +31,9 @@ export class RegisterComponent {
 
     this.userService.register(email, password).subscribe({
       next: () => {
-        // Navigate to login or show success message
         this.router.navigate(['/login']);
       },
       error: error => {
-        // Handle error scenario, such as showing an error message to the user
         console.error('Registration failed:', error);
       },
     });
