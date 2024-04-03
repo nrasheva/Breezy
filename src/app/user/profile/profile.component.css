@@ -1,5 +1,6 @@
 .views {
   min-height: 100svh;
+  display: block;
 }
 
 .view:first-of-type {
@@ -62,6 +63,13 @@
 
 #editInput:focus {
   outline: none;
+}
+
+#editInput:-webkit-autofill,
+#editInput:-webkit-autofill:hover,
+#editInput:-webkit-autofill:focus,
+#editInput:-webkit-autofill:active {
+  transition: background-color 5000000s ease-in-out 0s;
 }
 
 .edit-btn {
