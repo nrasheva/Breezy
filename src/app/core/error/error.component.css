@@ -18,6 +18,9 @@
   box-shadow: 0 5px 10px rgb(204, 204, 204);
   background-color: var(--error-red);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .error-message {
@@ -28,9 +31,15 @@
   background-color: var(--success-green);
 }
 
+.error-btn {
+  background-color: white;
+  color: var(--dark-blue-magenta);
+  padding: 0.5rem 0;
+}
+
 @media only screen and (min-width: 1200px) {
   .notification {
-    right: 45%;
+    right: 40%;
     top: 45%;
   }
 }
