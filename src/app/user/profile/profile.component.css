@@ -7,6 +7,15 @@
   display: none;
 }
 
+.no-data-message {
+  background-color: var(--dark-blue-magenta);
+  color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin: 5rem 1rem;
+}
+
 .current-location {
   display: flex;
   justify-content: center;
@@ -141,6 +150,10 @@
   .modify-location:hover {
     cursor: pointer;
     color: var(--success-green);
+  }
+
+  .no-data-message {
+    margin: 5rem;
   }
 
   #editInput {
