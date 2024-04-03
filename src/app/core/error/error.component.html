@@ -1,5 +1,6 @@
 <div class="error-container">
-<div class="notification">
-  <p class="error-message">{{errorMessage}}</p>
-</div>
+  <div class="notification" *ngIf="isShown">
+    <p class="error-message">{{ errorMessage }}</p>
+    <button class="error-btn" (click)="onOkClick()">OK</button>
+  </div>
 </div>
