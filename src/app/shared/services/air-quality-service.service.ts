@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { LocationCoordinatesService } from './location-coordinates.service';
 import { AirQualityData } from 'src/app/types/AirQualityData';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class AirQualityServiceService {
   ) {}
 
   fetchAirQuality(lat: number, lon: number): Observable<AirQualityData> {
-    const baseURL = '/api/getAirQuality';
+    const baseURL = `${environment.apiUrl}/getAirQuality`;
     const params = { params: { lat: lat, lng: lon } };
     return this.http
       .get<{ airQuality: { current: AirQualityData } }>(baseURL, params)
