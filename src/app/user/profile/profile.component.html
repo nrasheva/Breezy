@@ -2,10 +2,17 @@
   <div class="views">
     <div class="view"></div>
     <div class="view">
-      <div>
+      <div class="location-view">
         <app-custom-location *ngIf="!currentLocation" />
-        <div>
-          <div class="current-location" *ngIf="currentLocation">
+        <div
+          *ngIf="!currentLocation"
+          class="no-data-message">
+          <p>
+            No location and pollen data available. Please select a location.
+          </p>
+        </div>
+        <div *ngIf="currentLocation">
+          <div class="current-location">
             <p>Your chosen location</p>
           </div>
           <div class="address-field" *ngIf="currentLocation">
@@ -33,7 +40,7 @@
             <input id="editInput" type="text" [(ngModel)]="editableLocation" />
             <button class="edit-btn" (click)="updateLocation()">Save</button>
           </div>
-          <app-loader *ngIf="isLoading"/>
+          <app-loader *ngIf="isLoading" />
           <div class="pollen-field" *ngIf="airQualityData && currentLocation">
             <span>
               <h2>Pollen Levels</h2>
