@@ -1,27 +1,56 @@
 # Breezy
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
+Breezy is a single page application where you can discover information for the current air quality conditions and pollen indexes according to the place where you live or want to visit.
 
-## Development server
+## Technologies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![Angular](https://img.shields.io/badge/Angular-red?style=flat&logo=angular&logoColor=white)
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Authentication
+- Air Quality indicators according to chosen location
+- Personal location for logged users 
+- Pollen indicators for logged users
 
-## Build
+## Acknowledgements
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Air Quality API](https://open-meteo.com/en/docs/air-quality-api)
 
-## Running unit tests
+## Run locally
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Clone the project
 
-## Running end-to-end tests
+```bash
+git clone https://github.com/nrasheva/breezy-website
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Go to the project directory
 
-## Further help
+```bash
+cd breezy
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Install the dependencies
+
+```bash
+npm install
+```
+
+Start the server
+
+```bash
+npm run start
+```
+
+## API
+
+- [breezy-api](https://github.com/nrasheva/breezy-api)
+
+## Feedback
+
+If you have any feedback, please reach me at nadezhda.rasheva96@gmail.com
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit)
