@@ -23,7 +23,7 @@ export class AppInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log(request);
+    // console.log(request);
 
     const authToken = localStorage.getItem('authToken');
 
@@ -49,8 +49,15 @@ export class AppInterceptor implements HttpInterceptor {
             break;
           case 403:
             // Forbidden
+            this.errorService.setError(err);
             console.log('Not authorized');
-            this.router.navigate(['/auth/login']);
+            this.router.navigate(['/error']);
+            break;
+          case 400:
+            // Not provided
+            this.errorService.setError(err);
+            console.log('Parameter not provided');
+            this.router.navigate(['/error']);
             break;
           default:
             // Global error handling
