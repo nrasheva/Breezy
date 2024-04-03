@@ -124,8 +124,11 @@ export class UserService implements OnDestroy {
     this.router.navigate(['/login']);
   }
 
-  createLocation(locationName: string) {
+  public handleTokenExpiry(): void {
+    this.logout();
+  }
 
+  createLocation(locationName: string) {
     return this.http.post<Location>('/api/location', { locationName }).pipe(
       tap((data: Location) => {
         console.log('Location created:', data);
@@ -213,7 +216,7 @@ export class UserService implements OnDestroy {
 
   deleteLocation(locationId: string): Observable<Location> {
     const headers = new HttpHeaders({
-      id: localStorage.getItem('userId') || '', 
+      id: localStorage.getItem('userId') || '',
     });
 
     return this.http
@@ -221,7 +224,7 @@ export class UserService implements OnDestroy {
       .pipe(
         tap(() => {
           console.log('Location deleted successfully');
-  
+
           this.removeLocationFromState(locationId);
         }),
         catchError(error => {
