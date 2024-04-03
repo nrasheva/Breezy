@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { GeoapifyResponse } from 'src/app/types/GeoapifyResponse';
+import { environment } from 'src/environments/environment';
 
 export interface LocationData {
   latitude: number;
@@ -27,7 +28,9 @@ export class LocationCoordinatesService {
   fetchLocationCoordinates(location: string) {
     const params = { location: location };
     this.http
-      .get<GeoapifyResponse>('/api/getLocationCoordinates', { params })
+      .get<GeoapifyResponse>(`${environment.apiUrl}/getLocationCoordinates`, {
+        params,
+      })
       .subscribe({
         next: response => {
           const coordinates =
@@ -35,7 +38,7 @@ export class LocationCoordinatesService {
           const longitude = coordinates[0];
           const latitude = coordinates[1];
           this.updateLocationData({ latitude, longitude });
-          console.log(latitude, longitude);
+          // console.log(latitude, longitude);
         },
         error: error =>
           console.error('Error fetching location coordinates:', error),
