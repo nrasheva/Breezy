@@ -12,6 +12,7 @@ import {
 import { Router } from '@angular/router';
 import { Location } from '../types/Location';
 import { DecodedToken } from '../types/DecodeToken';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -34,9 +35,6 @@ export class UserService implements OnDestroy {
       this.user = user;
     });
     this.initializeLocation();
-
-    // Correctly placed call to initialize the user state within the constructor
-    // this.initializeUserState();
   }
 
   private initializeLocation(): void {
@@ -45,20 +43,6 @@ export class UserService implements OnDestroy {
       this.currentLocation$$.next(JSON.parse(savedLocation));
     }
   }
-
-  // private initializeUserState(): void {
-  //   if (this.hasToken()) {
-  //     this.getLocation().subscribe({
-  //       next: user => {
-  //         this.user$$.next(user); // Update user state
-  //       },
-  //       error: error => {
-  //         console.error('Error fetching user profile:', error);
-  //         // Here you might want to handle the error, e.g., by clearing the token if it's invalid
-  //       },
-  //     });
-  //   }
-  // }
 
   private hasToken(): boolean {
     return !!localStorage.getItem('authToken');
@@ -70,7 +54,7 @@ export class UserService implements OnDestroy {
 
   login(email: string, password: string) {
     return this.http
-      .post<{ token?: string }>('/api/login', { email, password })
+      .post<{ token?: string }>(`${environment.apiUrl}/login`, { email, password })
       .pipe(
         tap(response => {
           if (response.token) {
@@ -85,7 +69,7 @@ export class UserService implements OnDestroy {
   }
 
   register(email: string, password: string) {
-    return this.http.post<User>('/api/register', { email, password }).pipe(
+    return this.http.post<User>(`${environment.apiUrl}/register`, { email, password }).pipe(
       tap(user => {
         this.user$$.next(user);
       })
@@ -129,7 +113,7 @@ export class UserService implements OnDestroy {
   }
 
   createLocation(locationName: string) {
-    return this.http.post<Location>('/api/location', { locationName }).pipe(
+    return this.http.post<Location>(`${environment.apiUrl}/location`, { locationName }).pipe(
       tap((data: Location) => {
         console.log('Location created:', data);
         this.setCurrentLocation(data); // Set the current location
@@ -142,7 +126,7 @@ export class UserService implements OnDestroy {
   }
 
   getLocation(): Observable<Location[]> {
-    return this.http.get<Location[]>('/api/location').pipe(
+    return this.http.get<Location[]>(`${environment.apiUrl}/location`,).pipe(
       catchError(error => {
         console.error('Error fetching locations:', error);
         return throwError(() => new Error('Failed to fetch locations'));
@@ -161,7 +145,7 @@ export class UserService implements OnDestroy {
 
   fetchAndSetUserLocation(): void {
     this.http
-      .get<Location[]>('/api/location')
+      .get<Location[]>(`${environment.apiUrl}/location`)
       .pipe(
         tap(location => {
           console.log('Current location fetched:', location);
@@ -184,7 +168,7 @@ export class UserService implements OnDestroy {
 
     return this.http
       .put<Location>(
-        `/api/location?id=${locationId}`,
+        `${environment.apiUrl}/location?id=${locationId}`,
         { content: newLocation },
         { headers }
       )
@@ -220,7 +204,7 @@ export class UserService implements OnDestroy {
     });
 
     return this.http
-      .delete<Location>(`/api/location?id=${locationId}`, { headers })
+      .delete<Location>(`${environment.apiUrl}/location?id=${locationId}`, { headers })
       .pipe(
         tap(() => {
           console.log('Location deleted successfully');
