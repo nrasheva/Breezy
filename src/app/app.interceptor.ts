@@ -9,12 +9,14 @@ import {
 import { Observable, catchError, throwError } from 'rxjs';
 import { ErrorService } from './core/error/error.service';
 import { Router } from '@angular/router';
+import { UserService } from './user/user.service';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
   constructor(
     private errorService: ErrorService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   intercept(
@@ -27,10 +29,7 @@ export class AppInterceptor implements HttpInterceptor {
 
     if (authToken) {
       if (this.isTokenExpired(authToken)) {
-        localStorage.removeItem('authToken');
-        this.router.navigate(['/login']);
-        localStorage.removeItem('currentLocation');
-        localStorage.removeItem('airQualityData');
+        this.userService.handleTokenExpiry();
         return throwError(() => new Error('Token has expired'));
       }
 
