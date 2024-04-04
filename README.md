@@ -1,4 +1,4 @@
-# [breezy-api](https://breezy-website.onrender.com)
+# [Breezy](https://breezy-website.onrender.com)
 
 Breezy is a single page application where you can discover information for the current air quality conditions and pollen indexes according to the place where you live or want to visit.
 
