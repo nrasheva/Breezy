@@ -1,4 +1,4 @@
-# Breezy
+# [breezy-api](https://breezy-website.onrender.com)
 
 Breezy is a single page application where you can discover information for the current air quality conditions and pollen indexes according to the place where you live or want to visit.
 
@@ -48,9 +48,3 @@ npm run start
 - [breezy-api](https://github.com/nrasheva/breezy-api)
 
 ## Feedback
-
-If you have any feedback, please reach me at nadezhda.rasheva96@gmail.com
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit)
