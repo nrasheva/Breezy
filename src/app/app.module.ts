@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,12 @@ import { SharedModule } from './shared/shared.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AuthenticateComponent, PageNotFoundComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AuthenticateComponent,
+    PageNotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     CoreModule,
@@ -23,12 +29,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found/page-not-
     AirQualityModule,
     UserRoutingModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })
-
 export class AppModule {}
